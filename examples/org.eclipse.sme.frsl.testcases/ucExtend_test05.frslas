@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <usecase name="A">
+      <primaryActor name="Customer"/>
+      <firstStep xsi:type="frsl:ActStep" name="s1" rejoinFrom="/0/@usecase.0/@firstStep/@nextStep/@nextStep" isActorStep="true">
+        <nextStep xsi:type="frsl:ActStep" name="s2">
+          <nextStep xsi:type="frsl:RejoinStep" rejoinTo="/0/@usecase.0/@firstStep">
+            <nextStep xsi:type="frsl:ActStep" name="s4" isActorStep="true">
+              <altFlow>
+                <condition/>
+                <altStep xsi:type="frsl:ActStep" name="s4b_1" rejoinFrom="/0/@usecase.0/@firstStep/@nextStep/@nextStep/@nextStep/@altFlow.0/@altStep/@nextStep/@nextStep" isActorStep="true">
+                  <nextStep xsi:type="frsl:ActStep" name="s4b_2">
+                    <nextStep xsi:type="frsl:RejoinStep" rejoinTo="/0/@usecase.0/@firstStep/@nextStep/@nextStep/@nextStep/@altFlow.0/@altStep">
+                      <condition/>
+                    </nextStep>
+                    <preSnapshot/>
+                    <postSnapshot/>
+                  </nextStep>
+                  <altFlow>
+                    <condition/>
+                    <altStep xsi:type="frsl:ActStep" name="s4b_1_1" isActorStep="true">
+                      <preSnapshot/>
+                      <postSnapshot/>
+                    </altStep>
+                  </altFlow>
+                  <preSnapshot/>
+                  <postSnapshot/>
+                </altStep>
+              </altFlow>
+              <preSnapshot/>
+              <postSnapshot/>
+            </nextStep>
+            <condition/>
+          </nextStep>
+          <altFlow>
+            <condition/>
+            <altStep xsi:type="frsl:ActStep" name="s2a_1" isActorStep="true">
+              <preSnapshot/>
+              <postSnapshot/>
+            </altStep>
+          </altFlow>
+          <preSnapshot/>
+          <postSnapshot/>
+        </nextStep>
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+      <extPoint name="extPoint" location="/0/@usecase.0/@firstStep /0/@usecase.0/@firstStep/@nextStep /0/@usecase.0/@firstStep/@nextStep/@nextStep /0/@usecase.0/@firstStep/@nextStep/@nextStep/@nextStep /0/@usecase.0/@firstStep/@nextStep/@altFlow.0/@altStep /0/@usecase.0/@firstStep/@nextStep/@nextStep/@nextStep/@altFlow.0/@altStep/@nextStep /0/@usecase.0/@firstStep/@nextStep/@nextStep/@nextStep/@altFlow.0/@altStep/@nextStep/@nextStep /0/@usecase.0/@firstStep/@nextStep/@nextStep/@nextStep/@altFlow.0/@altStep/@altFlow.0/@altStep">
+        <condition/>
+      </extPoint>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="ucExtend_test05.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/ucExtend_test05.frsl">
+    <ownedPackages name="usecase">
+      <ownedClasses name="A" superClasses="/1/@ownedPackages.0/@ownedClasses.1">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step3_rejoin_1a">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2a_altFlow">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2a.1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4a_altFlow">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4a.1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4a.2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4a.3_rejoin_4a.1a">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4a.1a_altFlow">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4a.1a.1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

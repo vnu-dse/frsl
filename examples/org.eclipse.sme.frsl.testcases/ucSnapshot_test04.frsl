@@ -1,0 +1,30 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+package ProcessSaleDomain{
+	class Product{
+		attribute name: String;
+	}
+	class Customer{
+	}
+}
+association Customer_Product
+	products: ProcessSaleDomain::Product[*]
+	customer: ProcessSaleDomain::Customer	
+end
+
+actor Customer
+end
+
+usecase ProcessSale
+	description = 'When the customer wants to pay ...'		
+	primaryActor = Customer
+	ucPrecondition
+		aProduct: Product;
+		aCustomer: Customer;
+		int: Integer;
+		(aProduct, aCustomer): ProcessSaleDomain::Customer_Product;
+		[aProduct.name.oclIsUndefined() = true]
+	end
+	actStep step01 from
+	to
+	end
+end

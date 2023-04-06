@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <actor name="ActorA"/>
+    <usecase name="Usecase01" primaryActor="/0/@actor.0">
+      <precondition>
+        <snapshot>
+          <object name="pA" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <object name="pB" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <link objVar="/0/@usecase.0/@precondition/@snapshot/@object.0 /0/@usecase.0/@precondition/@snapshot/@object.1" assoc="/1/@ownedPackages.0/@ownedClasses.3"/>
+        </snapshot>
+      </precondition>
+      <postcondition>
+        <snapshot>
+          <link assoc="/1/@ownedPackages.0/@ownedClasses.3"/>
+        </snapshot>
+      </postcondition>
+      <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+        <preSnapshot>
+          <object name="pA" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <object name="pB" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <object name="pC" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <link objVar="/0/@usecase.0/@firstStep/@preSnapshot/@object.0 /0/@usecase.0/@firstStep/@preSnapshot/@object.1" assoc="/1/@ownedPackages.0/@ownedClasses.3" isNeg="true"/>
+        </preSnapshot>
+        <postSnapshot>
+          <object name="pD" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <object name="pA" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <object name="pB" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <object name="pC" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <link objVar="/0/@usecase.0/@firstStep/@preSnapshot/@object.0 /0/@usecase.0/@firstStep/@preSnapshot/@object.1" assoc="/1/@ownedPackages.0/@ownedClasses.3"/>
+        </postSnapshot>
+      </firstStep>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="varLink_test03.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/varLink_test03.frsl">
+    <ownedImports name="ecore" xmiidVersion="1">
+      <importedNamespace xsi:type="pivot:Package" href="http://www.eclipse.org/emf/2002/Ecore.oclas#+bAnO"/>
+    </ownedImports>
+    <ownedPackages name="ProcessSaleDomain">
+      <ownedClasses name="Person" superClasses="/1/@ownedPackages.0/@ownedClasses.1">
+        <ownedProperties name="Parent" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.0">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.69"/>
+        </ownedProperties>
+        <ownedProperties name="Parent" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.1">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.69"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses name="_DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="_Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Parent" superClasses="/1/@ownedPackages.0/@ownedClasses.1">
+        <ownedProperties name="father" type="/1/@ownedPackages.0/@ownedClasses.0" opposite="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.0"/>
+        <ownedProperties name="children" opposite="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.1">
+          <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.67"/>
+        </ownedProperties>
+      </ownedClasses>
+    </ownedPackages>
+    <ownedPackages name="usecase">
+      <ownedClasses name="Usecase01">
+        <ownedOperations name="enter_Usecase01">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="exit_Usecase01">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedProperties name="pA" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+        <ownedProperties name="pB" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+        <ownedProperties name="pC" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+        <ownedProperties name="pD" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

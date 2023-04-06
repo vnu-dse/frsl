@@ -1,0 +1,52 @@
+package domain {
+	class ClassA{
+	}
+}
+
+actor ActorA
+end
+
+
+usecase UsecaseA
+	primaryActor = ActorA
+	actStep s1 from
+	to
+	end
+	sysStep s2 from
+	to
+	end
+	rejoinStep s1 when
+	end
+	actStep s4 from
+	to
+	end
+	altStep at s2 
+		when
+		end
+		actStep s2a_1 from
+		to
+		end
+	end
+	altStep at s4 
+		when
+		end
+		actStep s4a_1 from
+		to
+		end
+		sysStep s4a_2 from
+		to
+		end
+		rejoinStep s4a_1 when
+		end
+		altStep at s4a_1 
+			when
+			end
+			actStep s4a_1_1 from
+			to
+			end
+		end	
+	end
+	extensionPoint extPoint at { s1::all | s2a_1 | s4a_2::all | s4a_1_1 }
+	when
+	end
+end

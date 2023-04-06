@@ -1,0 +1,31 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+package AssocClassTest{
+	class A{
+		attribute a: Integer;
+	}
+	class B{
+		attribute b: Integer;
+	}
+}
+
+association AA
+	attr1: B
+	attr2: A
+end
+
+actor ActorA
+end
+
+usecase UsecaseA
+	primaryActor = ActorA
+	ucPrecondition
+		objA: A;
+		objB: B;
+		(objA, objB): AA;
+		[objA.a > 100]
+		[objB.attr2.a > 100]
+	end
+	actStep step01 from
+	to
+	end
+end

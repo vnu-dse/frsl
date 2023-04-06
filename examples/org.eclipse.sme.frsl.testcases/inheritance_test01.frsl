@@ -1,0 +1,9 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+package InheritanceExample{
+	class Person{
+		attribute age: Integer;
+	}
+	class Father extends Person{
+		invariant Old: age > 20;		
+	}
+}

@@ -1,0 +1,116 @@
+.v-card{
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    border-radius : 4px;
+    background-color: #fff;
+    color: rgba(0,0,0,.87);
+}
+
+.v-card-text{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 22px;
+    white-space: normal;
+    margin-bottom: 20px
+}
+
+.v-card-content{
+    padding: 16px;
+    font-size: 18px;
+    color: #666;
+}
+
+.v-btn{
+    height: 30px;
+    min-width: 50px;
+    padding: 0 10px;
+    align-items: center;
+    border-radius: 4px;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 500;
+    letter-spacing: .0892857143em;
+    justify-content: center;
+    outline: 0;
+    position: relative;
+    text-decoration: none;
+    text-indent: 0.0892857143em;
+    text-transform: uppercase;
+    transition-duration: .28s;
+    transition-property: box-shadow,transform,opacity;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    background-color: #4caf50 ;
+    border: none;
+}
+
+.v-btn:before {
+    background-color: currentColor;
+    border-radius: inherit;
+    bottom: 0;
+    color: inherit;
+    content: "";
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .2s cubic-bezier(.4,0,.6,1);
+}
+
+.v-btn-content{
+    align-items: center;
+    color: inherit;
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: inherit;
+    line-height: normal;
+    position: relative;
+    transition: inherit;
+    transition-property: opacity;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+
+.closebtn {
+    float: right;
+    top: 5px;
+    right: 15px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: lightgrey;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.form-control{
+    margin: 20px 0;
+}
+
+// .displayHidden{
+//     display: none;
+// }

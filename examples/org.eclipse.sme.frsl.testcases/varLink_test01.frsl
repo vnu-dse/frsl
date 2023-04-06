@@ -1,0 +1,28 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+package ProcessSaleDomain{
+	class Product{
+		attribute name: String;
+	}
+	class Customer{
+	}
+}
+association Customer_Product
+	customer: Customer	
+	products: Product[*]
+end
+
+actor Customer
+end
+
+usecase ProcessSale
+	description = 'When the customer wants to pay ...'		
+	primaryActor = Customer
+	ucPrecondition
+		aCustomer: Customer;
+		products: OrderedSet(Product);
+		(aCustomer, products): Customer_Product;
+	end
+	actStep step01 from
+	to
+	end
+end

@@ -1,0 +1,18 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+
+package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
+{
+	class Library{
+		attribute name : String[1];
+		attribute ok : Boolean;
+		property books#library : Book[*|1];
+	}
+	class Book{
+		attribute name : String[1];
+		property library#books : Library[?];
+	}
+}
+association Library_Book
+	books: tutorial::Book[*|1]  
+	library: tutorial::Library[?] 
+end

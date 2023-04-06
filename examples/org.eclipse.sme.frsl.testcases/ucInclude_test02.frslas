@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <actor name="Customer"/>
+    <usecase name="HandlePayment" primaryActor="/0/@actor.0">
+      <firstStep xsi:type="frsl:ActStep" name="s1" isActorStep="true">
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+    <usecase name="ProcessSale" description="..." primaryActor="/0/@actor.0">
+      <firstStep xsi:type="frsl:ActStep" name="s1" rejoinFrom="/0/@usecase.1/@firstStep/@nextStep" isActorStep="true">
+        <nextStep xsi:type="frsl:RejoinStep" rejoinTo="/0/@usecase.1/@firstStep">
+          <nextStep xsi:type="frsl:UCStep" includedUC="/0/@usecase.0">
+            <nextStep xsi:type="frsl:ActStep" name="s4" isActorStep="true">
+              <preSnapshot/>
+              <postSnapshot/>
+            </nextStep>
+          </nextStep>
+          <condition/>
+        </nextStep>
+        <altFlow>
+          <condition/>
+          <altStep xsi:type="frsl:ActStep" name="s1a_1" isActorStep="true">
+            <nextStep xsi:type="frsl:UCStep" includedUC="/0/@usecase.0"/>
+            <preSnapshot/>
+            <postSnapshot/>
+          </altStep>
+        </altFlow>
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+      <include addition="/0/@usecase.0"/>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="ucInclude_test02.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/ucInclude_test02.frsl">
+    <ownedPackages name="usecase">
+      <ownedClasses name="HandlePayment" superClasses="/1/@ownedPackages.0/@ownedClasses.2">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="ProcessSale" superClasses="/1/@ownedPackages.0/@ownedClasses.2">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2_rejoin_1a">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step1a_altFlow">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step1a.1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedProperties name="includedUC_HandlePayment" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

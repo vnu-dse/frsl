@@ -1,0 +1,21 @@
+actor ActorA
+end
+
+usecase A
+	primaryActor = ActorA
+	actStep s1 from		
+	to
+	end
+end
+
+usecase B
+	primaryActor = ActorA
+	actStep s1 from		
+	to
+	end
+	extensionPoint extPoint at {s1}
+	when
+	end
+end
+
+A extends B at {extPoint}

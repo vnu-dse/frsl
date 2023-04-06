@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE frsl:FrslModel [
+<!ENTITY _0 "http://www.eclipse.org/emf/2002/Ecore.oclas">
+<!ENTITY _1 "http://www.eclipse.org/ocl/2015/Library.oclas">
+]>
+<frsl:FrslModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL"
+    xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot" xsi:schemaLocation="http://www.xtext.org/sme/FRSL java://org.eclipse.sme.frsl.FrslPackage http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.pivot.PivotPackage"
+    xmi:id="AAAAA" name="collection_test01.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/collection_test01.frsl"
+    xmiidVersion="1">
+  <ownedImports name="ecore" importedNamespace="pivot:Package &_0;#+bAnO" xmiidVersion="1"/>
+  <ownedPackages xmi:id="U0j9+" name="ProcessSaleDomain">
+    <ownedClasses xmi:id="H2yzk" name="Customer" superClasses="#+6o0,"/>
+    <ownedClasses xmi:id="+6o0," name="_DomainClass" superClasses="&_1;#zfDWR">
+      <ownedProperties xmi:id="zGmaM" name="isProblDom" type="pivot:PrimitiveType &_1;#XEMMs"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:AssociationClass" xmi:id="QtmD0" name="_Tracks" superClasses="&_1;#zfDWR">
+      <ownedProperties xmi:id="oRZcO" name="problObj" type="#+6o0,"/>
+      <ownedProperties xmi:id="bKj8Q" name="swObj" type="#+6o0,"/>
+    </ownedClasses>
+  </ownedPackages>
+  <ownedPackages xmi:id="xajEA" name="usecase">
+    <ownedClasses xmi:id="ovP4Y" name="ProcessSale" superClasses="&_1;#zfDWR">
+      <ownedOperations xmi:id="Mb4yP" name="enter_ProcessSale" type="pivot:PrimitiveType &_1;#XEMMs"/>
+      <ownedOperations xmi:id="YqtpI" name="step1_actor" type="pivot:PrimitiveType &_1;#XEMMs"/>
+      <ownedProperties xmi:id="mBrMm" name="num" type="pivot:PrimitiveType &_1;#tYtCd"/>
+      <ownedProperties xmi:id="qM58u" name="numbers" type="#+CRRX"/>
+      <ownedProperties xmi:id="1E4PG" name="customers" type="#I82hK"/>
+    </ownedClasses>
+  </ownedPackages>
+  <ownedPackages name="$$" URI="http://www.eclipse.org/ocl/2015/Orphanage" nsPrefix="orphanage">
+    <ownedClasses xsi:type="pivot:SetType" xmi:id="+CRRX" name="Set" superClasses="#mYlOW" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="pivot:PrimitiveType &_1;#tYtCd" formal="&_1;#ODsm5"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:SetType" xmi:id="I82hK" name="Set" superClasses="#wRLfJ" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#H2yzk" formal="&_1;#ODsm5"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="mYlOW" name="UniqueCollection" superClasses="#1d1Sm">
+      <ownedBindings>
+        <ownedSubstitutions actual="pivot:PrimitiveType &_1;#tYtCd" formal="&_1;#jdfjE"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="wRLfJ" name="UniqueCollection" superClasses="#,WbjZ">
+      <ownedBindings>
+        <ownedSubstitutions actual="#H2yzk" formal="&_1;#jdfjE"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="1d1Sm" name="Collection" superClasses="&_1;#jbMkR">
+      <ownedBindings>
+        <ownedSubstitutions actual="pivot:PrimitiveType &_1;#tYtCd" formal="&_1;#qs59R"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id=",WbjZ" name="Collection" superClasses="&_1;#jbMkR">
+      <ownedBindings>
+        <ownedSubstitutions actual="#H2yzk" formal="&_1;#qs59R"/>
+      </ownedBindings>
+    </ownedClasses>
+  </ownedPackages>
+  <actor name="Customer"/>
+  <usecase name="ProcessSale" primaryActor="#//@actor.0">
+    <precondition>
+      <snapshot>
+        <object name="num" type="#mBrMm" isMatched="true"/>
+        <object name="numbers" type="#qM58u" isMatched="true"/>
+        <object name="customers" type="#1E4PG" isMatched="true"/>
+      </snapshot>
+    </precondition>
+    <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+      <preSnapshot>
+        <object name="num" type="#mBrMm"/>
+        <object name="numbers" type="#qM58u"/>
+        <object name="customers" type="#1E4PG"/>
+      </preSnapshot>
+      <postSnapshot>
+        <object name="num" type="#mBrMm" isMatched="true"/>
+        <object name="numbers" type="#qM58u" isMatched="true"/>
+        <object name="customers" type="#1E4PG" isMatched="true"/>
+      </postSnapshot>
+    </firstStep>
+  </usecase>
+</frsl:FrslModel>

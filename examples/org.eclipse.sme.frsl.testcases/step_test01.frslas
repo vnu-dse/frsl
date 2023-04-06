@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <actor name="Customer"/>
+    <usecase name="ProcessSale" description="..." primaryActor="/0/@actor.0">
+      <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+        <nextStep xsi:type="frsl:ActStep" name="step02">
+          <nextStep xsi:type="frsl:ActStep" name="step03" isActorStep="true">
+            <preSnapshot/>
+            <postSnapshot/>
+          </nextStep>
+          <preSnapshot/>
+          <postSnapshot/>
+        </nextStep>
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="step_test01.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/step_test01.frsl">
+    <ownedPackages name="usecase">
+      <ownedClasses name="ProcessSale" superClasses="/1/@ownedPackages.0/@ownedClasses.1">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step3_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

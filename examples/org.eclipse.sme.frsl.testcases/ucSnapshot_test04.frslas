@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <usecase name="ProcessSale" description="When the customer wants to pay ...">
+      <primaryActor name="Customer"/>
+      <precondition>
+        <snapshot constraint="/1/@ownedPackages.1/@ownedClasses.0/@ownedOperations.0/@ownedPreconditions.0">
+          <object name="aProduct" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+          <object name="aCustomer" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+          <object name="int">
+            <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+          </object>
+          <link objVar="/0/@usecase.0/@precondition/@snapshot/@object.0 /0/@usecase.0/@precondition/@snapshot/@object.1" assoc="/1/@ownedPackages.0/@ownedClasses.2"/>
+        </snapshot>
+      </precondition>
+      <firstStep xsi:type="frsl:ActStep" name="step01">
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="ucSnapshot_test04.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/ucSnapshot_test04.frsl">
+    <ownedImports name="ecore" xmiidVersion="1">
+      <importedNamespace xsi:type="pivot:Package" href="http://www.eclipse.org/emf/2002/Ecore.oclas#+bAnO"/>
+    </ownedImports>
+    <ownedPackages name="ProcessSaleDomain">
+      <ownedClasses name="Product">
+        <ownedProperties name="name">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#AlwVZ"/>
+        </ownedProperties>
+        <ownedProperties name="Customer_Product" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.0">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.69"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses name="Customer">
+        <ownedProperties name="Customer_Product" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.1">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.69"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Customer_Product">
+        <ownedProperties name="products" opposite="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.1">
+          <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.67"/>
+        </ownedProperties>
+        <ownedProperties name="customer" type="/1/@ownedPackages.0/@ownedClasses.1" opposite="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.0"/>
+      </ownedClasses>
+    </ownedPackages>
+    <ownedPackages name="usecase">
+      <ownedClasses name="ProcessSale">
+        <ownedOperations name="enter_ProcessSale">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+          <ownedPreconditions>
+            <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="aProduct.name.oclIsUndefined() = true">
+              <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+              <ownedBody xsi:type="pivot:OperationCallExp" name="=">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+                <ownedSource xsi:type="pivot:OperationCallExp" name="oclIsUndefined">
+                  <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+                  <ownedSource xsi:type="pivot:PropertyCallExp" name="name" referredProperty="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.0">
+                    <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#AlwVZ"/>
+                    <ownedSource xsi:type="pivot:PropertyCallExp" name="aProduct" type="/1/@ownedPackages.0/@ownedClasses.0" referredProperty="/1/@ownedPackages.1/@ownedClasses.0/@ownedProperties.0">
+                      <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.1/@ownedClasses.0" isImplicit="true" referredVariable="/1/@ownedPackages.1/@ownedClasses.0/@ownedOperations.0/@ownedPreconditions.0/@ownedSpecification/@ownedContext"/>
+                    </ownedSource>
+                  </ownedSource>
+                  <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#aSwFn"/>
+                </ownedSource>
+                <ownedArguments xsi:type="pivot:BooleanLiteralExp" booleanSymbol="true">
+                  <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+                </ownedArguments>
+                <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#2dcxV"/>
+              </ownedBody>
+              <ownedContext xsi:type="pivot:ParameterVariable" name="self" type="/1/@ownedPackages.1/@ownedClasses.0"/>
+            </ownedSpecification>
+          </ownedPreconditions>
+        </ownedOperations>
+        <ownedOperations name="step1_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedProperties name="aProduct" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+        <ownedProperties name="aCustomer" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+        <ownedProperties name="int">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+        </ownedProperties>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <usecase name="ProcessSale" description="...">
+      <primaryActor name="Customer"/>
+      <firstStep xsi:type="frsl:ActStep" name="s1" rejoinFrom="/0/@usecase.0/@firstStep/@nextStep/@nextStep">
+        <nextStep xsi:type="frsl:ActStep" name="s2">
+          <nextStep xsi:type="frsl:RejoinStep" rejoinTo="/0/@usecase.0/@firstStep">
+            <nextStep xsi:type="frsl:ActStep" name="s3">
+              <preSnapshot/>
+              <postSnapshot/>
+            </nextStep>
+            <condition/>
+          </nextStep>
+          <altFlow>
+            <condition/>
+            <altStep xsi:type="frsl:ActStep" name="s2a_1">
+              <preSnapshot/>
+              <postSnapshot/>
+            </altStep>
+          </altFlow>
+          <altFlow>
+            <condition/>
+            <altStep xsi:type="frsl:ActStep" name="s2b_1" rejoinFrom="/0/@usecase.0/@firstStep/@nextStep/@altFlow.1/@altStep/@nextStep/@nextStep">
+              <nextStep xsi:type="frsl:ActStep" name="s2b_2">
+                <nextStep xsi:type="frsl:RejoinStep" rejoinTo="/0/@usecase.0/@firstStep/@nextStep/@altFlow.1/@altStep">
+                  <condition/>
+                </nextStep>
+                <preSnapshot/>
+                <postSnapshot/>
+              </nextStep>
+              <altFlow>
+                <condition/>
+                <altStep xsi:type="frsl:ActStep" name="s2b_1_1">
+                  <preSnapshot/>
+                  <postSnapshot/>
+                </altStep>
+              </altFlow>
+              <preSnapshot/>
+              <postSnapshot/>
+            </altStep>
+          </altFlow>
+          <preSnapshot/>
+          <postSnapshot/>
+        </nextStep>
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="step_test04.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/step_test04.frsl">
+    <ownedPackages name="usecase">
+      <ownedClasses name="ProcessSale">
+        <ownedOperations name="step2b.1_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2b.2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2b.1a.1_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step1_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step4_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2a.1_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step1a.1_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step1a.2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step1a.1a.1_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

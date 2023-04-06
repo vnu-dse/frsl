@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <actor name="Customer1"/>
+    <actor name="Customer2"/>
+    <usecase name="ProcessSale" description="..." primaryActor="/0/@actor.0" secondaryActor="/0/@actor.0 /0/@actor.1">
+      <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="ucActor_test02.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/ucActor_test02.frsl">
+    <ownedPackages name="usecase">
+      <ownedClasses name="ProcessSale" superClasses="/1/@ownedPackages.0/@ownedClasses.1">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

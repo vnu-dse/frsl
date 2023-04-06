@@ -1,0 +1,43 @@
+package domain{
+	class classA{
+	}
+}
+
+actor ActorA
+end
+
+actor ActorB
+end
+
+usecase usecaseA
+	primaryActor = ActorA
+	actStep s1 from
+	to
+	end
+	extensionPoint extPoint at {s1}
+	when
+	end
+end
+
+usecase usecaseB
+	primaryActor = ActorB
+	actStep s1 from
+	to
+	end
+end
+
+usecase usecaseC
+	primaryActor = ActorA	
+	inclStep s1 usecaseA
+	end
+	
+	altStep at s1 
+	when
+	end
+		inclStep usecaseB
+		end
+		
+	end
+end
+
+usecaseB extends usecaseA at {extPoint}

@@ -1,0 +1,28 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+package ProcessSaleDomain{
+	class Person{
+	}
+}
+association Parent
+	father: Person[1]	
+	children: Person[*]
+end
+
+actor ActorA
+end
+
+usecase Usecase01
+	primaryActor = ActorA
+	ucPrecondition
+		pA: Person;
+		pB: Person;
+		(pA, pB): Parent;
+	end
+	actStep step01 from
+		pA: Person;
+		pB: Person;
+		(pA, pB): Parent;
+	to
+		!(pA, pB):Parent;
+	end
+end

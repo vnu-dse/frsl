@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.frslas"
+            id="org.eclipse.sme.frslas2uml.ui.popupMenus.contribution.IFile">
+         <menu id="org.eclipse.frsl2uml.module.menu" label="Frslas2TexFrsl" path="frslas">
+               <groupMarker name="frslas"/> 
+         </menu>
+         <action
+               class="org.eclipse.acceleo.frsl.as2cs.ui.popupMenus.AcceleoGenerateAs2csAction"
+               enablesFor="+"
+               icon="icons/default.gif"
+               id="org.eclipse.acceleo.frsl.as2cs.ui.popupMenus.acceleoGenerateAs2csAction"
+               label="Generate Textual Frsl"
+               menubarPath="org.eclipse.frsl2uml.module.menu/acceleo"
+               tooltip="Apply for .frslas file"/>
+         <!--  action
+               class="org.eclipse.acceleo.frsl.as2cs.ui.common.GenerateUml"
+               icon="icons/img2.gif"
+               id="org.eclipse.acceleo.frsl.as2cs.ui.common.generateUml"
+               label="Generate UML Class Diagram and State Machine"
+               menubarPath="org.eclipse.frsl2uml.module.menu/acceleo"
+               tooltip="Apply for .frslas file to gen UML"         
+         </action-->
+         
+      </objectContribution>
+   </extension>
+</plugin>

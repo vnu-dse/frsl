@@ -1,0 +1,351 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module generate.
+ */]
+[module generate('http://www.xtext.org/sme/FRSL', 'http://www.eclipse.org/ocl/2015/Pivot')]
+
+
+[**
+ * The documentation of the template generateElement.
+ * @param aFrslModel
+ */]
+[template public generateElement(aFrslModel : FrslModel) post (trim())]
+[comment @main/]
+[file (aFrslModel.name, false, 'UTF-8')]
+-- *******************************************************************************
+-- FRSL - Functional Requirements Specification Language
+-- SME LAB - UET - VNU
+-- Contributors: hanh.dd, dai.ndq
+-- *******************************************************************************
+
+-- /**
+--  * Need to import this URI to use OclElement, every class can extend OclElement.
+--  *
+--  * @generated
+--  */
+import pivot:'http://www.eclipse.org/ocl/2015/Library';
+
+[genPackage(aFrslModel.ownedPackages->any(e | e.name <> '$$' and e.name <> 'usecase'))/]
+
+-- /**
+--  * This allows to initialize actors.
+--  *
+--  * @generated
+--  */
+[genActor(aFrslModel.actor)/]
+
+[for (uc : Usecase| aFrslModel.usecase)]
+-- /**
+--  * This allows to initialize usecase.
+--  *
+--  * @generated
+--  */
+[uc.genUC()/]
+
+[/for]
+[genExtend(aFrslModel.ucExtend)/]
+[/file]
+[/template]
+
+[template public genPackage(p : Package) post (trim())]
+package [p.name/] {
+	-- /**
+	--  * This allows to initialize class.
+	--  *
+	--  * @generated
+	--  */
+	[genClass(p.ownedClasses->select(e | e.oclIsTypeOf(Class))->asOrderedSet())/]
+}
+
+-- /**
+--  * This allows to initialize association class.
+--  *
+--  * @generated
+--  */
+[genAssociation(p.ownedClasses->select(e | e.oclIsTypeOf(AssociationClass))->collect(e | e.oclAsType(AssociationClass))->asOrderedSet())/]
+[/template]
+
+[template public genActor(as : OrderedSet(Actor)) post (trim())]
+[for (a : Actor | as)]
+actor [a.name/]
+end
+
+[/for]
+[/template]
+
+[template public genAssociation(acs : OrderedSet(AssociationClass)) post (trim())]
+[for (ac : AssociationClass | acs)]
+association [ac.name/]
+	[genPropertyOfAssociation(ac.ownedProperties)/]
+end
+
+[/for]
+[/template]
+
+[template public genPropertyOfAssociation(ps : OrderedSet(Property)) post (trim())]
+[for (p : Property | ps)]
+[p.name/]: [genPivotClass(p.type)/] [getMultiplicity(p)/]
+[/for]
+[/template]
+
+[template public genClass(classes : OrderedSet(Class)) post (trim())]
+[for (c : Class | classes)]
+class [c.name/][if (getSupperClass(c.superClasses->asOrderedSet()) <> '')] extends [getSupperClass(c.superClasses->asOrderedSet())/][/if] {
+	[genAttribute(c.ownedProperties->asOrderedSet())/]
+}
+
+[/for]
+[/template]
+
+[template public genAttribute(ps : OrderedSet(Property)) post (trim())]
+[for (p : Property | ps)]
+[if (p.isImplicit = false and p.opposite.oclIsUndefined() = true)]
+attribute [p.name/]: [genPivotType(p.type)/];
+[/if]
+[/for]
+[/template]
+
+[template public genExtend(es : OrderedSet(Extend)) post (trim())]
+[for (e : Extend | es)]
+[e.extension.name/] extends [e.extendedUC.name/] at {[getExtension(e.extPoint)/]}
+[/for]
+[/template]
+
+[template public genUC(uc : Usecase) post (trim())]
+usecase [uc.name/]
+	description = '[uc.description/]'
+	primaryActor = [uc.primaryActor.name/]
+	[if (not uc.secondaryActor->isEmpty())]
+	secondaryActors = {[getSecondaryActor(uc.secondaryActor)/]}
+	[/if]
+
+	ucPrecondition
+		description = '[uc.precondition.description/]'
+		[genSnapshotPattern(uc.precondition.snapshot)/]
+	end
+
+	ucPostcondition
+		description = '[uc.postcondition.description/]'
+		[genSnapshotPattern(uc.postcondition.snapshot)/]
+	end
+
+	-- /**
+	--  * The first step in scenario of use case
+	--  *
+	--  * @generated
+	--  */
+	[genStep(uc.firstStep)/]
+
+	-- /**
+	--  * The alternative flows of use case
+	--  *
+	--  * @generated
+	--  */
+	[genAllAltFlow(uc.firstStep)/]
+	[genExtensionPoint(uc.extPoint)/]
+end
+[/template]
+
+[template public genExtensionPoint(extensionPoints : OrderedSet(ExtensionPoint)) post (trim())]
+[for (ep : ExtensionPoint | extensionPoints)]
+extensionPoint [ep.name/] at {[getLocation(ep.location)/]}
+description = '[ep.description/]'
+when
+	[genSnapshotPattern(ep.condition)/]
+end
+[/for]
+[/template]
+
+[template public genStep(step : Step) post (trim())]
+[if (step.oclIsTypeOf(ActStep))]
+[genActStep(step.oclAsType(ActStep))/]
+[elseif (step.oclIsTypeOf(UCStep))]
+[genUCStep(step.oclAsType(UCStep))/]
+[elseif (step.oclIsTypeOf(RejoinStep))]
+[genRejoinStep(step.oclAsType(RejoinStep))/]
+[/if]
+
+[if (step.nextStep.oclIsUndefined() = false)]
+[genStep(step.nextStep)/]
+[/if]
+[/template]
+
+[template public genAllAltFlow(step : Step) post (trim())]
+[if (not step.altFlow->isEmpty())]
+[genAltFlow(step.altFlow)/]
+[/if]
+
+[if (step.nextStep.oclIsUndefined() = false)]
+[genAllAltFlow(step.nextStep)/]
+[/if]
+[/template]
+
+[template public genAltFlow(afs : OrderedSet(AltFlow)) post (trim())]
+[for (af : AltFlow | afs)]
+altStep [if (not af.name.oclIsUndefined())][af.name.trim()/][/if] at [af.baseStep.name/]
+	description = '[af.description/]'
+	when
+		[genSnapshotPattern(af.condition)/]
+	end
+	[if (af.altStep.oclIsUndefined() = false)]
+	[genStep(af.altStep)/]
+	[genAllAltFlow(af.altStep)/]
+	[/if]
+end
+[/for]
+[/template]
+
+[template public genUCStep(ucs : UCStep) post (trim())]
+inclStep [ucs.name/]
+description = '[ucs.description/]'
+	[ucs.includedUC.name/]
+end
+[/template]
+
+[template public genRejoinStep(rs : RejoinStep) post (trim())]
+rejoinStep [rs.rejoinTo.name/]
+description = '[rs.description/]'
+when
+	[genSnapshotPattern(rs.condition)/]
+end  
+[/template]
+
+[template public genActStep(as : ActStep) post (trim())]
+[if (as.isActorStep = true)]actStep[else]sysStep[/if] [as.name/]
+description = '[as.description/]'
+from
+	[if (as.preSnapshot.oclIsUndefined() = false)]
+		[genSnapshotPattern(as.preSnapshot)/]
+	[/if]
+to
+	[if (as.postSnapshot.oclIsUndefined() = false)]
+		[genSnapshotPattern(as.postSnapshot)/]
+	[/if]
+actions
+	[genAction(as.action)/]
+end
+[/template]
+
+[template public genAction(actions : OrderedSet(Action)) post (trim())]
+[for (a : Action | actions)]
+[if (a.oclIsTypeOf(SystemAction))]
+[a.actor.name/] <- [a.objVars->first().name/]: [genPivotType(a.objVars->first().type.type)/] = [a.objVars->first().type.ownedExpression._body/];                   
+[else]
+[a.actor.name/] -> [a.objVars->first().name/]: [genPivotType(a.objVars->first().type.type)/];
+[/if]
+[/for]
+[/template]
+
+[template public genSnapshotPattern(sp : SnapshotPattern) post (trim())]
+[if (not sp.oclIsUndefined())]
+[if (not sp.object->oclIsUndefined())]
+[genObjVar(sp.object)/]
+[/if]
+[if (not sp.link->oclIsUndefined())]
+[genVarLink(sp.link)/]
+[/if]
+[if (sp.constraint->oclIsUndefined() = false)]
+[genConstraint(sp.constraint)/]
+[/if]
+[/if]
+[/template]
+
+[template public genObjVar(objVars : OrderedSet(ObjVar)) post (trim())]
+[for (o : ObjVar | objVars)]
+[if (o.isMatched)]$[/if][if (o.type.type.oclIsKindOf(CollectionType))]
+[o.name/]: [genPivotType(o.type.type)/];
+[else]
+[o.name/]: [o.type.type.name/];
+[/if]
+[/for]
+[/template]
+
+[template public genPivotType(t : Type) post (trim())]
+[t.name/][if (t.oclIsKindOf(CollectionType))]
+([genPivotClass(t)/])
+[/if]
+[/template]
+
+[template public genPivotClass(t : Type) post (trim())]
+[if (t.oclIsKindOf(CollectionType))]
+[t.oclAsType(CollectionType).ownedBindings->asOrderedSet()->first().ownedSubstitutions->asOrderedSet()->first().actual.name/]
+[else]
+[t.name/]
+[/if]
+[/template]
+
+[template public genVarLink(varLinks : OrderedSet(VarLink)) post (trim())]
+[for (vl : VarLink | varLinks)]
+[if (vl.isNeg)]![/if]([vl.objVar->at(1).name/], [vl.objVar->at(2).name/]): [vl.assoc.name/];
+[/for]
+[/template]
+
+[template public genConstraint(constraints : OrderedSet(Constraint)) post (trim())]
+[for (c : Constraint | constraints)]
+['['/][c.ownedSpecification._body/]]
+[/for]
+[/template]
+
+[comment]==================== Query ====================[/comment]
+
+[query public getMultiplicity(p : Property) : String = 
+	if (p.type.oclIsKindOf(CollectionType)) then
+		'[' + p.type.oclAsType(CollectionType).lower.toString() + '..' + p.type.oclAsType(CollectionType).upper.toString() + ']'
+	else
+		if (p.isRequired) then
+			'[1]'
+		else
+			'[?]'
+		endif 
+	endif
+/]
+
+[query public getExtension(eps : OrderedSet(ExtensionPoint)) : String = 
+	eps -> iterate(e; res : String = '' | 
+						if e <> eps->last() then
+							res + e.name + ', '
+						else
+							res + e.name
+						endif
+				)
+/]
+
+[query public getLocation(steps : OrderedSet(Step)) : String = 
+	steps -> iterate(e; res : String = '' | 
+						if e <> steps->last() then
+							res + e.name + ', '
+						else
+							res + e.name
+						endif
+				)
+/]
+
+[query public getSecondaryActor(sActors : OrderedSet(Actor)) : String = 
+	sActors -> iterate(e; res : String = '' | 
+						if e <> sActors->last() then
+							res + e.name + ', '
+						else
+							res + e.name
+						endif
+				)
+/]
+
+[query public getSupperClass(classes : OrderedSet(Class)) : String = 
+	classes -> iterate(e; res : String = '' | 
+								if e <> classes->last() then
+									if e.name <> 'OclElement' then
+										res + e.name + ', '
+									else
+										res + 'pivot::OclElement, '
+									endif
+								else
+									if e.name <> 'OclElement' then
+										res + e.name
+									else
+										res + 'pivot::OclElement'
+									endif
+								endif
+							
+						
+				)
+/]

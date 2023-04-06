@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <actor name="ActorA"/>
+    <usecase name="usecaseA" primaryActor="/0/@actor.0">
+      <firstStep xsi:type="frsl:ActStep" name="s1" isActorStep="true">
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+    <usecase name="usecaseB" primaryActor="/0/@actor.0">
+      <firstStep xsi:type="frsl:ActStep" name="s1" isActorStep="true">
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+    <usecase name="usecaseC" primaryActor="/0/@actor.0">
+      <firstStep xsi:type="frsl:UCStep" name="s1" includedUC="/0/@usecase.0">
+        <altFlow>
+          <condition/>
+          <altStep xsi:type="frsl:UCStep" includedUC="/0/@usecase.1"/>
+        </altFlow>
+      </firstStep>
+      <include addition="/0/@usecase.1"/>
+      <include addition="/0/@usecase.0"/>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="ucInclude_test03.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/ucInclude_test03.frsl">
+    <ownedPackages name="usecase">
+      <ownedClasses name="usecaseA" superClasses="/1/@ownedPackages.0/@ownedClasses.3">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="usecaseB" superClasses="/1/@ownedPackages.0/@ownedClasses.3">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="usecaseC" superClasses="/1/@ownedPackages.0/@ownedClasses.3">
+        <ownedOperations name="step1a_altFlow">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedProperties name="includedUC_usecaseB" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+        <ownedProperties name="includedUC_usecaseA" type="/1/@ownedPackages.0/@ownedClasses.0"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.3"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.3"/>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

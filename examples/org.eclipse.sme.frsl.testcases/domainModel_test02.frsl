@@ -1,0 +1,13 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+
+package tutorial
+{
+	class Library{
+		attribute name : String[1];
+		property books#library : Book[*|1];
+	}
+	class Book{
+		attribute name : String[1];
+		property library#books : Library[?];
+	}
+}

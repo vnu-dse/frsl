@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <usecase name="A">
+      <primaryActor name="ActorA"/>
+      <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+        <nextStep xsi:type="frsl:ActStep" name="step02">
+          <nextStep xsi:type="frsl:ActStep" name="step03" isActorStep="true">
+            <preSnapshot/>
+            <postSnapshot/>
+          </nextStep>
+          <preSnapshot/>
+          <postSnapshot/>
+        </nextStep>
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+    <usecase name="B">
+      <primaryActor name="ActorB"/>
+      <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+        <nextStep xsi:type="frsl:ActStep" name="step02">
+          <nextStep xsi:type="frsl:ActStep" name="step03" isActorStep="true">
+            <preSnapshot/>
+            <postSnapshot/>
+          </nextStep>
+          <preSnapshot/>
+          <postSnapshot/>
+        </nextStep>
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+      <extPoint name="extPoint" location="/0/@usecase.1/@firstStep /0/@usecase.1/@firstStep/@nextStep" extend="/0/@ucExtend.0">
+        <condition/>
+      </extPoint>
+    </usecase>
+    <ucExtend extendedUC="/0/@usecase.1" extension="/0/@usecase.0" extPoint="/0/@usecase.1/@extPoint.0"/>
+  </frsl:FrslModel>
+  <pivot:Model name="ucExtend_test07.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/ucExtend_test07.frsl">
+    <ownedPackages name="usecase">
+      <ownedClasses name="A" superClasses="/1/@ownedPackages.0/@ownedClasses.2">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step3_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedProperties name="extendUC_B" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+      </ownedClasses>
+      <ownedClasses name="B" superClasses="/1/@ownedPackages.0/@ownedClasses.2">
+        <ownedOperations name="opExtPoint1">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step3_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

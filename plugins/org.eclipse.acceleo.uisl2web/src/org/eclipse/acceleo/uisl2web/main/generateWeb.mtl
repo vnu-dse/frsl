@@ -1,0 +1,375 @@
+[comment encoding = UTF-8 /]
+[module generateWeb('platform:/resource/org.eclipse.sme.uisl.ecore/model/UISL.ecore')]
+
+[template public generateElement(dslgui : DSLGUI)]
+[comment @main/]
+[let arrInteractionElement: Sequence(InteractionFlowModelElement) = dslgui.interactionFlowModelElement->asSequence()]
+
+
+[file ('MyProject.html', false, 'UTF-8')]
+ 	<html>
+        <head>
+            <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+            <link rel="stylesheet" href="style.css"></link>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+            <title>DSL_GUI</title>
+        </head>
+        <body>
+[comment]            <h1>My project</h1>[/comment]
+			
+			[generateMenu()/]
+
+			[for (container : ViewContainer | arrInteractionElement->select(c | c.oclIsTypeOf(ViewContainer))->collect(e | e.oclAsType(ViewContainer)))]
+				[if (container.isDefault=true)]
+					[generatePageDefault(container, arrInteractionElement)/]
+				[else]
+					[generatePageNext(container, arrInteractionElement)/]
+				[/if]				
+
+			[/for]
+			
+			               
+			[for (action : ActionBlock | arrInteractionElement->select(c | c.oclIsTypeOf(ActionBlock))->collect(e | e.oclAsType(ActionBlock)))]
+				[generateActionElement(action.oclAsType(ActionBlock), arrInteractionElement)/]
+			[/for] 
+
+			[for (moduleDefinition : ModuleDefinition | arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(e | e.oclAsType(ModuleDefinition)))]
+				[generateModule(moduleDefinition.oclAsType(ModuleDefinition), arrInteractionElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition)))/]
+			[/for]
+		</body>
+        <script src="myscript.js"></script>
+    </html>
+
+[/file]
+[/let]
+[/template]
+
+[template public generateMenu(dslgui : DSLGUI)]
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		[for (con : ViewContainer | dslgui.eAllContents(ViewContainer)) ]
+			[if (con.isDefault=true)]
+				<a class="navbar-brand" href="[con.name.trim()/]">[con.name/]</a>
+					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					    	<span class="navbar-toggler-icon"></span>
+					  </button>
+					  <div class="collapse navbar-collapse" id="navbarNav">
+					  		<ul class="navbar-nav">
+			[/if]
+		[/for]
+
+		 					
+
+		[for (con : ViewContainer | dslgui.eAllContents(ViewContainer)) ]
+			[if (con.inInteractionFlowBlock->size() = 0)]
+				[if (not con.isDefault=true)]
+					<li class="nav-item active">
+				        	<a class="nav-link" href="[con.name.trim()/]">[con.name/]<span class="sr-only">(current)</span></a>
+				    </li>
+				[/if]
+			[/if]
+		[/for]
+
+				</ul>
+		  	</div>
+	</nav>
+[/template]
+
+[template public generatePageDefault(con : ViewContainer, arrInteractionElement: Sequence(InteractionFlowModelElement) )]
+	<div class="v-card defaultPageContainer currentPage" id="Container_[arrInteractionElement->indexOf(con)/]" href="[con.name.trim()/]">
+        <div class="v-card-text">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        [con.name/]
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+		<div class="v-card-content">
+         	[for(e : ViewComponent | con.viewElement.oclAsType(ViewComponent))] 
+				[if (e.oclIsTypeOf(FormComponent))]
+					[generateForm(e.oclAsType(FormComponent), arrInteractionElement, con.viewElement->asSequence())/]
+				[elseif (e.oclIsTypeOf(ListComponent))]
+					[generateList(e.oclAsType(ListComponent), arrInteractionElement, con.viewElement->asSequence())/]
+				[elseif (e.oclIsTypeOf(DetailsComponent))]
+					[generateDetails(e.oclAsType(DetailsComponent), arrInteractionElement, con.viewElement->asSequence())/]
+				[elseif (e.oclIsTypeOf(MessageComponent))]
+					[generateMessage(e.oclAsType(MessageComponent), arrInteractionElement, con.viewElement->asSequence())/]
+				[/if]
+			[/for]    
+
+			[for (btn : NavigationFlow | con.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+				[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, con.viewElement->asSequence(), arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())/]
+			[/for]         
+      
+        </div>
+
+    </div>
+[/template]
+
+[template public generatePageNext(con : ViewContainer, arrInteractionElement: Sequence(InteractionFlowModelElement))]
+	<div class="v-card hiddenPage" id="Container_[arrInteractionElement->indexOf(con)/]"  href="[con.name.trim()/]">
+        <div class="v-card-text">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        [con.name/]
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+		<div class="v-card-content">
+            [for(e : ViewComponent | con.viewElement.oclAsType(ViewComponent))] 
+				[if (e.oclIsTypeOf(FormComponent))]
+					[generateForm(e.oclAsType(FormComponent), arrInteractionElement, con.viewElement->asSequence())/]
+				[elseif (e.oclIsTypeOf(ListComponent))]
+					[generateList(e.oclAsType(ListComponent), arrInteractionElement, con.viewElement->asSequence())/]
+				[elseif (e.oclIsTypeOf(DetailsComponent))]
+					[generateDetails(e.oclAsType(DetailsComponent), arrInteractionElement, con.viewElement->asSequence())/]
+				[elseif (e.oclIsTypeOf(MessageComponent))]
+					[generateMessage(e.oclAsType(MessageComponent), arrInteractionElement, con.viewElement->asSequence())/]
+				[/if]
+			[/for]   
+
+
+			[for (btn : NavigationFlow | con.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+				[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, con.viewElement->asSequence(), arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())/]
+			[/for]    
+			  
+        </div>
+
+    </div>
+[/template]
+
+[template public generateActionElement(action : ActionBlock, arrInteractionElement: Sequence(InteractionFlowModelElement))]
+	<div class="modal hiddenPage actionBlock center" tabindex="-1" role="dialog" id="Container_[arrInteractionElement->indexOf(action)/]">
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+			    <div class="modal-header">
+		       		<h5 class="modal-title">Action</h5>
+			      	<button type="button" class="closeActionBlock" data-dismiss="modal" aria-label="Close">
+			          	<span aria-hidden="true">&times;</span>
+			        </button>
+		      	</div>
+
+		      	<div class="modal-body">
+		      	  	<p>[action.name/]...............</p>
+		      	</div>
+
+		      	<div class="modal-footer">
+					[for (btn : NavigationFlow | action.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+						[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, btn.eContainer().siblings()->select(c | c.oclIsTypeOf(ViewContainer))->collect(c | c.oclAsType(ViewContainer)).viewElement->asSequence(), arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())	/]
+					[/for]
+
+					[for (errorBtn : ErrorFlow | action.outInteractionFlows->select(c | c.oclIsTypeOf(ErrorFlow))->collect(c | c.oclAsType(ErrorFlow))->asSequence())]
+						[generateErrorFlow(errorBtn, arrInteractionElement, errorBtn.eContainer().siblings()->select(c | c.oclIsTypeOf(ViewContainer))->collect(c | c.oclAsType(ViewContainer)).viewElement->asSequence(), arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())	/]
+					[/for]
+				
+		        	[for (okBtn : OKFlow | action.outInteractionFlows->select(c | c.oclIsTypeOf(OKFlow))->collect(c | c.oclAsType(OKFlow))->asSequence())]
+						[generateOKFlow(okBtn, arrInteractionElement, okBtn.eContainer().siblings()->select(c | c.oclIsTypeOf(ViewContainer))->collect(c | c.oclAsType(ViewContainer)).viewElement->asSequence(), arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())	/]
+					[/for]
+		      	</div>
+		    </div>
+		</div>
+	</div>
+[/template]
+
+
+[template public generateForm(form : FormComponent, arrInteractionElement: Sequence(InteractionFlowModelElement), arrViewElement: Sequence(ViewElement))]
+	[if(form.fields->size() > 0)]
+		<div class="card mb-4" id="Container_[arrInteractionElement->indexOf(form.eContainer())/]_Component_[arrViewElement->indexOf(form)/]">
+			<div class="card-header"> 
+				[form.name/]
+			</div>
+			<div class="v-card-content">
+				<form>
+				    <div class="form-group">
+						[for(field : String | form.fields) separator('\n')]
+							<input type="text" class="form-control form-input" id="[field/]" aria-describedby="[field/]" placeholder="[field/]"></input>
+						[/for]
+				    </div>
+				</form> 
+			[for (btn : NavigationFlow | form.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+				[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())/]
+			[/for]
+
+			[for (errorBtn : ErrorFlow | form.outInteractionFlows->select(c | c.oclIsTypeOf(ErrorFlow))->collect(c | c.oclAsType(ErrorFlow))->asSequence())]
+				[generateErrorFlow(errorBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+			[/for]
+		
+        	[for (okBtn : OKFlow | form.outInteractionFlows->select(c | c.oclIsTypeOf(OKFlow))->collect(c | c.oclAsType(OKFlow))->asSequence())]
+				[generateOKFlow(okBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+			[/for]
+			</div>
+		
+		</div>
+				
+	[else]
+		<div class="input-group mb-4" id="Container_[arrInteractionElement->indexOf(form.eContainer())/]_Component_[arrViewElement->indexOf(form)/]">
+		  	<div class="input-group-prepend">
+		    	<span class="input-group-text" id="basic-[form.name/]">[form.name/]</span>
+		  	</div>
+		  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+			[for (btn : NavigationFlow | form.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+				[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())/]
+			[/for]
+
+			[for (errorBtn : ErrorFlow | form.outInteractionFlows->select(c | c.oclIsTypeOf(ErrorFlow))->collect(c | c.oclAsType(ErrorFlow))->asSequence())]
+				[generateErrorFlow(errorBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+			[/for]
+		
+        	[for (okBtn : OKFlow | form.outInteractionFlows->select(c | c.oclIsTypeOf(OKFlow))->collect(c | c.oclAsType(OKFlow))->asSequence())]
+				[generateOKFlow(okBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+			[/for]
+		</div>
+	[/if]
+			
+[/template]
+
+[template public generateList(list : ListComponent, arrInteractionElement: Sequence(InteractionFlowModelElement), arrViewElement: Sequence(ViewElement))]
+	<div class="card mb-4" id="Container_[arrInteractionElement->indexOf(list.eContainer())/]_Component_[arrViewElement->indexOf(list)/]">
+		<div class="card-header"> 
+			[list.name/]
+		</div>
+		<div class="v-card-content">
+			<table class="table table-striped">
+				[if(list.columns->size() > 0)]
+					<tr>
+						[for(column : String | list.columns) separator('\n')]
+							<th>[column/]</th>
+						[/for]
+			        </tr>
+			        <tr>
+						[for(columns : String | list.columns) separator('\n')]
+							<td>value</td>
+						[/for]
+			        </tr>
+			        <tr>
+			            [for(columns : String | list.columns) separator('\n')]
+							<td>value2</td>
+						[/for]
+			        </tr>
+				[else]
+					<tr>
+						<td colspan="[list.columns->size()/]">No data available</td>
+					</tr>
+				[/if]
+		        
+		    </table>
+			[for (btn : NavigationFlow | list.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+				[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())/]
+			[/for]
+
+			[for (errorBtn : ErrorFlow | list.outInteractionFlows->select(c | c.oclIsTypeOf(ErrorFlow))->collect(c | c.oclAsType(ErrorFlow))->asSequence())]
+				[generateErrorFlow(errorBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+			[/for]
+		
+        	[for (okBtn : OKFlow | list.outInteractionFlows->select(c | c.oclIsTypeOf(OKFlow))->collect(c | c.oclAsType(OKFlow))->asSequence())]
+				[generateOKFlow(okBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+			[/for]
+		</div>
+	</div>
+[/template]
+
+
+[template public generateDetails(details : DetailsComponent, arrInteractionElement: Sequence(InteractionFlowModelElement), arrViewElement: Sequence(ViewElement))]
+	<div class="card mb-4" id="Container_[arrInteractionElement->indexOf(details.eContainer())/]_Component_[arrViewElement->indexOf(details)/]">
+		<div class="card-header"> 
+			[details.name/]
+		</div>
+		<div class="v-card-content ml-4">
+			[if(details.options->size() > 0)]
+				[for(option : String | details.options) separator('\n')]
+					<input type="checkbox" class="form-check-input" id="details-[option/]" name="[option/]" value="[option/]">
+						<label class="form-check-label" for="[option/]"> [option/]</label><br>
+				[/for]
+				
+			[else]
+				<span>No data available</span>
+			[/if]
+			
+			[for (btn : NavigationFlow | details.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+				[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())/]
+			[/for]
+
+			[for (errorBtn : ErrorFlow | details.outInteractionFlows->select(c | c.oclIsTypeOf(ErrorFlow))->collect(c | c.oclAsType(ErrorFlow))->asSequence())]
+				[generateErrorFlow(errorBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+			[/for]
+		
+        	[for (okBtn : OKFlow | details.outInteractionFlows->select(c | c.oclIsTypeOf(OKFlow))->collect(c | c.oclAsType(OKFlow))->asSequence())]
+				[generateOKFlow(okBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+			[/for]
+		</div>
+	</div>
+[/template]
+
+[template public generateMessage(msg : MessageComponent, arrInteractionElement: Sequence(InteractionFlowModelElement), arrViewElement: Sequence(ViewElement))]
+	<div class="card mb-4" id="Container_[arrInteractionElement->indexOf(msg.eContainer())/]_Component_[arrViewElement->indexOf(msg)/]">
+		<div class="v-card-content">
+			<span class="message-component">[msg.msg/]</span>
+			<div>
+				[for (btn : NavigationFlow | msg.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+					[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())/]
+				[/for]
+	
+				[for (errorBtn : ErrorFlow | msg.outInteractionFlows->select(c | c.oclIsTypeOf(ErrorFlow))->collect(c | c.oclAsType(ErrorFlow))->asSequence())]
+					[generateErrorFlow(errorBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence() ) /]
+				[/for]
+			
+	        	[for (okBtn : OKFlow | msg.outInteractionFlows->select(c | c.oclIsTypeOf(OKFlow))->collect(c | c.oclAsType(OKFlow))->asSequence())]
+					[generateOKFlow(okBtn, arrInteractionElement, arrViewElement, arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+				[/for]
+			</div>
+		</div>
+	</div>
+[/template]
+
+[template public generateNavigationFlow(btn : NavigationFlow, arrInteractionElement: Sequence(InteractionFlowModelElement), arrViewElement: Sequence(ViewElement), arrModule: Sequence(ModuleDefinition))]
+	<button type="button" class="btn btn-success" onclick="navigationPage([if (arrInteractionElement->includes(btn.targetInteractionFlowElement))]Container_[arrInteractionElement->indexOf(btn.targetInteractionFlowElement)/][elseif (arrViewElement->includes(btn.targetInteractionFlowElement))]Container_[arrInteractionElement->indexOf(btn.targetInteractionFlowElement.eContainer())/][else]Module_[arrModule->includes(btn.targetInteractionFlowElement.eContainer())/][/if])">
+        [btn.name/]
+    </button>
+	
+[/template]
+
+[template public generateErrorFlow(errorBtn : ErrorFlow, arrInteractionElement: Sequence(InteractionFlowModelElement), arrViewElement: Sequence(ViewElement), arrModule: Sequence(ModuleDefinition))]
+	<button type="button" class="btn btn-error actionBlockError" onclick="actionError([if (arrInteractionElement->includes(errorBtn.targetInteractionFlowElement))]Container_[arrInteractionElement->indexOf(errorBtn.targetInteractionFlowElement)/][elseif (arrViewElement->includes(errorBtn.targetInteractionFlowElement))]Container_[arrInteractionElement->indexOf(errorBtn.targetInteractionFlowElement.eContainer())/][else]Module_[arrModule->indexOf(errorBtn.targetInteractionFlowElement.eContainer())/][/if])">
+		Error
+	</button>
+	
+[/template]
+
+[template public generateOKFlow(okBtn : OKFlow, arrInteractionElement: Sequence(InteractionFlowModelElement), arrViewElement: Sequence(ViewElement), arrModule: Sequence(ModuleDefinition))]
+	<button type="button" class="btn btn-success actionBlockSuccess" onclick="actionSuccess([if (arrInteractionElement->includes(okBtn.targetInteractionFlowElement))]Container_[arrInteractionElement->indexOf(okBtn.targetInteractionFlowElement)/][elseif (arrViewElement->includes(okBtn.targetInteractionFlowElement))]Container_[arrInteractionElement->indexOf(okBtn.targetInteractionFlowElement.eContainer())/][else]Module_[arrModule->indexOf(okBtn.targetInteractionFlowElement.eContainer())/][/if])">
+		Success
+	</button>
+[/template]
+
+[template public generateModule(moduleDefinition : ModuleDefinition, arrInteractionElement: Sequence(InteractionFlowModelElement), arrModule: Sequence(ModuleDefinition))]
+	<div class="mb-4 hiddenPage moduleCard" id="Module_[arrModule->indexOf(moduleDefinition)/]">
+		<div class="card-header">
+			[moduleDefinition.name/]
+		</div>
+		<div class="v-card-content">
+			<div class="module-content mb-3">Activities of UC</div>
+			<div>
+				[for (btn : NavigationFlow | moduleDefinition.outputPort.outInteractionFlows->select(c | c.oclIsTypeOf(NavigationFlow))->collect(e | e.oclAsType(NavigationFlow))->asSequence())]
+					[generateNavigationFlow(btn.oclAsType(NavigationFlow), arrInteractionElement, btn.eContainer().siblings()->select(c | c.oclIsTypeOf(ViewContainer))->collect(c | c.oclAsType(ViewContainer)).viewElement->asSequence(), arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence())/]
+				[/for]
+	
+				[for (errorBtn : ErrorFlow | moduleDefinition.outputPort.outInteractionFlows->select(c | c.oclIsTypeOf(ErrorFlow))->collect(c | c.oclAsType(ErrorFlow))->asSequence())]
+					[generateErrorFlow(errorBtn, arrInteractionElement, errorBtn.eContainer().siblings()->select(c | c.oclIsTypeOf(ViewContainer))->collect(c | c.oclAsType(ViewContainer)).viewElement->asSequence(), arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence() ) /]
+				[/for]
+			
+	        	[for (okBtn : OKFlow | moduleDefinition.outputPort.outInteractionFlows->select(c | c.oclIsTypeOf(OKFlow))->collect(c | c.oclAsType(OKFlow))->asSequence())]
+					[generateOKFlow(okBtn, arrInteractionElement, okBtn.eContainer().siblings()->select(c | c.oclIsTypeOf(ViewContainer))->collect(c | c.oclAsType(ViewContainer)).viewElement->asSequence(), arrInteractionElement->select(c | c.oclIsTypeOf(ModuleDefinition))->collect(c | c.oclAsType(ModuleDefinition))->asSequence()) /]
+				[/for]
+			</div>
+		</div>
+	</div>
+	
+[/template]
+
+
+

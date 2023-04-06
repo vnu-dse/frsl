@@ -1,0 +1,12 @@
+actor Customer
+end
+usecase ProcessSale
+	description = 'When the customer wants to pay ...'		
+	primaryActor = Customer
+	ucPrecondition
+		int: Integer;
+	end
+	actStep step01 from
+	to
+	end
+end

@@ -1,0 +1,18 @@
+actor ActorA
+end
+
+usecase A
+	primaryActor = ActorA
+	actStep s1 from
+	to
+	end
+	sysStep s2 from
+	to
+	end
+	actStep s3 from
+	to
+	end
+	extensionPoint extPoint at { s1::s2 }
+	when
+	end
+end

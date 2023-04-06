@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ifml2ui.xsl"?>
+<!-- <!DOCTYPE doc [
+<!ENTITY otherFile SYSTEM "My.pos_v3">
+]>
+
+<doc>
+    &My.pos_v3;
+</doc> -->
+<pos_v3:DSLGUI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pos_v3="http://www.example.org/pos_v3">
+    <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="Overview" inInteractionFlowBlock="//@interactionFlowModelElement.3/@viewElement.0/@outInteractionFlows.0" isDefault="true">
+        <viewElement xsi:type="pos_v3:FormComponent" name="Create new sale" inInteractionFlowBlock="//@interactionFlowModelElement.4/@outInteractionFlows.0">
+            <outInteractionFlows xsi:type="pos_v3:NavigationFlow" targetInteractionFlowElement="//@interactionFlowModelElement.1"/>
+        </viewElement>
+    </interactionFlowModelElement>
+    <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="Sales" inInteractionFlowBlock="//@interactionFlowModelElement.0/@viewElement.0/@outInteractionFlows.0">
+        <outInteractionFlows xsi:type="pos_v3:NavigationFlow" targetInteractionFlowElement="//@interactionFlowModelElement.2"/>
+        <viewElement xsi:type="pos_v3:FormComponent" name="Sale form">
+            <outInteractionFlows xsi:type="pos_v3:NavigationFlow" targetInteractionFlowElement="//@interactionFlowModelElement.1/@viewElement.1"/>
+        </viewElement>
+        <viewElement xsi:type="pos_v3:ListComponent" name="Item list" inInteractionFlowBlock="//@interactionFlowModelElement.1/@viewElement.0/@outInteractionFlows.0"/>
+        <viewElement xsi:type="pos_v3:FormComponent" name="Total"/>
+    </interactionFlowModelElement>
+    <interactionFlowModelElement xsi:type="pos_v3:ActionBlock" name="Create new sale" inInteractionFlowBlock="//@interactionFlowModelElement.1/@outInteractionFlows.0">
+        <outInteractionFlows xsi:type="pos_v3:ErrorFlow" targetInteractionFlowElement="//@interactionFlowModelElement.3"/>
+        <outInteractionFlows xsi:type="pos_v3:OKFlow"/>
+        <outInteractionFlows xsi:type="pos_v3:OKFlow" targetInteractionFlowElement="//@interactionFlowModelElement.5/@inputPort.0"/>
+    </interactionFlowModelElement>
+    <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="Error message" inInteractionFlowBlock="//@interactionFlowModelElement.2/@outInteractionFlows.0">
+        <viewElement xsi:type="pos_v3:MessageComponent" name="Error message">
+            <outInteractionFlows xsi:type="pos_v3:NavigationFlow" targetInteractionFlowElement="//@interactionFlowModelElement.0"/>
+        </viewElement>
+    </interactionFlowModelElement>
+    <interactionFlowModelElement xsi:type="pos_v3:ActionBlock" name="Update system" inInteractionFlowBlock="//@interactionFlowModelElement.5/@outputPort.0/@outInteractionFlows.0">
+        <outInteractionFlows xsi:type="pos_v3:OKFlow" targetInteractionFlowElement="//@interactionFlowModelElement.0/@viewElement.0"/>
+    </interactionFlowModelElement>
+    <interactionFlowModelElement xsi:type="pos_v3:ModuleDefinition" name="UC Handle Credit Payment">
+        <inputPort name="Input Port" inInteractionFlowBlock="//@interactionFlowModelElement.2/@outInteractionFlows.2"/>
+        <outputPort name="Output Port">
+            <outInteractionFlows xsi:type="pos_v3:NavigationFlow" targetInteractionFlowElement="//@interactionFlowModelElement.4"/>
+        </outputPort>
+    </interactionFlowModelElement>
+</pos_v3:DSLGUI>

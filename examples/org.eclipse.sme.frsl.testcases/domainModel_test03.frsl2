@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pivot:Model [
+<!ENTITY _0 "http://www.eclipse.org/emf/2002/Ecore.oclas">
+<!ENTITY _1 "http://www.eclipse.org/ocl/2015/Library.oclas">
+]>
+<pivot:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot"
+    xsi:schemaLocation="http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.pivot.PivotPackage" xmi:id="AAAAA" name="domainModel_test03.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/domainModel_test03.frsl">
+  <ownedImports name="ecore" importedNamespace="pivot:Package &_0;#+bAnO" xmiidVersion="1"/>
+  <ownedPackages xmi:id="YzzYU" name="tutorial" URI="http://www.eclipse.org/mdt/ocl/oclinecore/tutorial" nsPrefix="tut">
+    <ownedClasses xmi:id="YbBrd" name="Library" superClasses="&_1;#zfDWR">
+      <ownedProperties xmi:id="b6ubE" name="name" type="pivot:PrimitiveType &_1;#AlwVZ"/>
+      <ownedProperties xmi:id="6aJ1J" name="books" type="#vRt9p" isComposite="true" opposite="#BmH8Q"/>
+      <ownedProperties xmi:id="T2UYK" name="loans" type="#eDtir" isComposite="true"/>
+      <ownedProperties xmi:id="p0jy8" name="members" type="#4D0qN" isComposite="true" opposite="#uZ+9U"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="Glwqw" name="Book" superClasses="&_1;#zfDWR">
+      <ownedInvariants xmi:id="3PSjn" name="SufficientCopies">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" type="pivot:PrimitiveType &_1;#XEMMs" body="library?.loans->select((book = self))->size() &lt;= copies">
+          <ownedBody xsi:type="pivot:OperationCallExp" name="&lt;=" type="pivot:PrimitiveType &_1;#XEMMs" referredOperation="&_1;#8brvY">
+            <ownedSource xsi:type="pivot:OperationCallExp" name="size" type="pivot:PrimitiveType &_1;#tYtCd" referredOperation="&_1;#eYPCX">
+              <ownedSource xsi:type="pivot:IteratorExp" name="select" type="#eDtir" referredIteration="&_1;#u7yy0">
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" isRequired="false" type="#eDtir" isSafe="true" referredProperty="#T2UYK">
+                  <ownedSource xsi:type="pivot:PropertyCallExp" name="library" isRequired="false" type="#YbBrd" referredProperty="#BmH8Q">
+                    <ownedSource xsi:type="pivot:VariableExp" name="self" type="#Glwqw" isImplicit="true" referredVariable="#fSKbw"/>
+                  </ownedSource>
+                </ownedSource>
+                <ownedBody xsi:type="pivot:OperationCallExp" name="=" type="pivot:PrimitiveType &_1;#XEMMs" referredOperation="&_1;#SYOvl">
+                  <ownedSource xsi:type="pivot:PropertyCallExp" name="book" type="#Glwqw" referredProperty="#a2QUZ">
+                    <ownedSource xsi:type="pivot:VariableExp" name="1_" type="#NN5rw" isImplicit="true" referredVariable="#emyOz"/>
+                  </ownedSource>
+                  <ownedArguments xsi:type="pivot:VariableExp" name="self" type="#Glwqw" referredVariable="#fSKbw"/>
+                </ownedBody>
+                <ownedIterators xsi:type="pivot:IteratorVariable" xmi:id="emyOz" name="1_" type="#NN5rw" isImplicit="true" representedParameter="&_1;#//@ownedPackages.0/@ownedClasses.29/@ownedOperations.14/@ownedIterators.0"/>
+              </ownedSource>
+            </ownedSource>
+            <ownedArguments xsi:type="pivot:PropertyCallExp" name="copies" type="pivot:PrimitiveType &_1;#tYtCd" referredProperty="#ZuMS2">
+              <ownedSource xsi:type="pivot:VariableExp" name="self" type="#Glwqw" isImplicit="true" referredVariable="#fSKbw"/>
+            </ownedArguments>
+          </ownedBody>
+          <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="fSKbw" name="self" type="#Glwqw"/>
+        </ownedSpecification>
+      </ownedInvariants>
+      <ownedOperations xmi:id="icpw2" name="isAvailable" type="pivot:PrimitiveType &_1;#XEMMs">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" type="pivot:PrimitiveType &_1;#XEMMs" body="loans->size() &lt; copies">
+          <ownedBody xsi:type="pivot:OperationCallExp" name="&lt;" type="pivot:PrimitiveType &_1;#XEMMs" referredOperation="&_1;#3+qvY">
+            <ownedSource xsi:type="pivot:OperationCallExp" name="size" type="pivot:PrimitiveType &_1;#tYtCd" referredOperation="&_1;#eYPCX">
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" type="#eDtir" referredProperty="#J5iLN">
+                <ownedSource xsi:type="pivot:VariableExp" name="self" type="#Glwqw" isImplicit="true" referredVariable="#eTfGc"/>
+              </ownedSource>
+            </ownedSource>
+            <ownedArguments xsi:type="pivot:PropertyCallExp" name="copies" type="pivot:PrimitiveType &_1;#tYtCd" referredProperty="#ZuMS2">
+              <ownedSource xsi:type="pivot:VariableExp" name="self" type="#Glwqw" isImplicit="true" referredVariable="#eTfGc"/>
+            </ownedArguments>
+          </ownedBody>
+          <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="eTfGc" name="self" type="#Glwqw"/>
+        </bodyExpression>
+      </ownedOperations>
+      <ownedProperties xmi:id="R98OH" name="name" type="pivot:PrimitiveType &_1;#AlwVZ"/>
+      <ownedProperties xmi:id="ZuMS2" name="copies" type="pivot:PrimitiveType &_1;#tYtCd"/>
+      <ownedProperties xmi:id="BmH8Q" name="library" isRequired="false" type="#YbBrd" opposite="#6aJ1J"/>
+      <ownedProperties xmi:id="J5iLN" name="loans" type="#eDtir" isDerived="true" isVolatile="true">
+        <ownedExpression xsi:type="pivot:ExpressionInOCL" type="#eDtir" body="library?.loans->select(book = self)">
+          <ownedBody xsi:type="pivot:IteratorExp" name="select" type="#eDtir" referredIteration="&_1;#u7yy0">
+            <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" isRequired="false" type="#eDtir" isSafe="true" referredProperty="#T2UYK">
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="library" isRequired="false" type="#YbBrd" referredProperty="#BmH8Q">
+                <ownedSource xsi:type="pivot:VariableExp" name="self" type="#Glwqw" isImplicit="true" referredVariable="#QZ1Nx"/>
+              </ownedSource>
+            </ownedSource>
+            <ownedBody xsi:type="pivot:OperationCallExp" name="=" type="pivot:PrimitiveType &_1;#XEMMs" referredOperation="&_1;#SYOvl">
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="book" type="#Glwqw" referredProperty="#a2QUZ">
+                <ownedSource xsi:type="pivot:VariableExp" name="1_" type="#NN5rw" isImplicit="true" referredVariable="#LtKmj"/>
+              </ownedSource>
+              <ownedArguments xsi:type="pivot:VariableExp" name="self" type="#Glwqw" referredVariable="#QZ1Nx"/>
+            </ownedBody>
+            <ownedIterators xsi:type="pivot:IteratorVariable" xmi:id="LtKmj" name="1_" type="#NN5rw" isImplicit="true" representedParameter="&_1;#//@ownedPackages.0/@ownedClasses.29/@ownedOperations.14/@ownedIterators.0"/>
+          </ownedBody>
+          <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="QZ1Nx" name="self" type="#Glwqw"/>
+        </ownedExpression>
+      </ownedProperties>
+      <ownedProperties xmi:id="m47X3" name="Member" type="#ZDwqN" isImplicit="true" opposite="#dROqQ"/>
+      <ownedProperties xmi:id="1oCcI" name="Loan" type="#,Cpir" isImplicit="true" opposite="#a2QUZ"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="3Dts5" name="Member" superClasses="&_1;#zfDWR">
+      <ownedInvariants xmi:id="gZRRX" name="AtMostTwoLoans">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" type="pivot:PrimitiveType &_1;#XEMMs" body="loans->size() &lt;= 2">
+          <ownedBody xsi:type="pivot:OperationCallExp" name="&lt;=" type="pivot:PrimitiveType &_1;#XEMMs" referredOperation="&_1;#8brvY">
+            <ownedSource xsi:type="pivot:OperationCallExp" name="size" type="pivot:PrimitiveType &_1;#tYtCd" referredOperation="&_1;#eYPCX">
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" type="#eDtir" referredProperty="#2sZNR">
+                <ownedSource xsi:type="pivot:VariableExp" name="self" type="#3Dts5" isImplicit="true" referredVariable="#QJluF"/>
+              </ownedSource>
+            </ownedSource>
+            <ownedArguments xsi:type="pivot:IntegerLiteralExp" type="pivot:PrimitiveType &_1;#tYtCd" integerSymbol="2"/>
+          </ownedBody>
+          <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="QJluF" name="self" type="#3Dts5"/>
+        </ownedSpecification>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="FtjMg" name="UniqueLoans">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" type="pivot:PrimitiveType &_1;#XEMMs" body="loans->isUnique(book)">
+          <ownedBody xsi:type="pivot:IteratorExp" name="isUnique" type="pivot:PrimitiveType &_1;#XEMMs" referredIteration="&_1;#ZQp5M">
+            <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" type="#eDtir" referredProperty="#2sZNR">
+              <ownedSource xsi:type="pivot:VariableExp" name="self" type="#3Dts5" isImplicit="true" referredVariable="#dZy6o"/>
+            </ownedSource>
+            <ownedBody xsi:type="pivot:PropertyCallExp" name="book" type="#Glwqw" referredProperty="#a2QUZ">
+              <ownedSource xsi:type="pivot:VariableExp" name="1_" type="#NN5rw" isImplicit="true" referredVariable="#k8WvL"/>
+            </ownedBody>
+            <ownedIterators xsi:type="pivot:IteratorVariable" xmi:id="k8WvL" name="1_" type="#NN5rw" isImplicit="true" representedParameter="&_1;#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.36/@ownedIterators.0"/>
+          </ownedBody>
+          <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="dZy6o" name="self" type="#3Dts5"/>
+        </ownedSpecification>
+      </ownedInvariants>
+      <ownedProperties xmi:id="6i5SR" name="name2" type="pivot:PrimitiveType &_1;#AlwVZ"/>
+      <ownedProperties xmi:id="uZ+9U" name="library" isRequired="false" type="#YbBrd" opposite="#p0jy8"/>
+      <ownedProperties xmi:id="2sZNR" name="loans" type="#eDtir" isDerived="true" isVolatile="true">
+        <ownedExpression xsi:type="pivot:ExpressionInOCL" type="#eDtir" body="library?.loans->select(member = self)">
+          <ownedBody xsi:type="pivot:IteratorExp" name="select" type="#eDtir" referredIteration="&_1;#u7yy0">
+            <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" isRequired="false" type="#eDtir" isSafe="true" referredProperty="#T2UYK">
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="library" isRequired="false" type="#YbBrd" referredProperty="#uZ+9U">
+                <ownedSource xsi:type="pivot:VariableExp" name="self" type="#3Dts5" isImplicit="true" referredVariable="#lK,Ey"/>
+              </ownedSource>
+            </ownedSource>
+            <ownedBody xsi:type="pivot:OperationCallExp" name="=" type="pivot:PrimitiveType &_1;#XEMMs" referredOperation="&_1;#SYOvl">
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="member" type="#3Dts5" referredProperty="#L1V5Y">
+                <ownedSource xsi:type="pivot:VariableExp" name="1_" type="#NN5rw" isImplicit="true" referredVariable="#MpCdT"/>
+              </ownedSource>
+              <ownedArguments xsi:type="pivot:VariableExp" name="self" type="#3Dts5" referredVariable="#lK,Ey"/>
+            </ownedBody>
+            <ownedIterators xsi:type="pivot:IteratorVariable" xmi:id="MpCdT" name="1_" type="#NN5rw" isImplicit="true" representedParameter="&_1;#//@ownedPackages.0/@ownedClasses.29/@ownedOperations.14/@ownedIterators.0"/>
+          </ownedBody>
+          <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="lK,Ey" name="self" type="#3Dts5"/>
+        </ownedExpression>
+      </ownedProperties>
+      <ownedProperties xmi:id="dROqQ" name="books" type="#VQp9p" isDerived="true" isVolatile="true">
+        <ownedExpression xsi:type="pivot:ExpressionInOCL" type="#VQp9p" body="loans->collect(book)">
+          <ownedBody xsi:type="pivot:IteratorExp" name="collect" type="#VQp9p" referredIteration="&_1;#cs1Yj">
+            <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" type="#eDtir" referredProperty="#2sZNR">
+              <ownedSource xsi:type="pivot:VariableExp" name="self" type="#3Dts5" isImplicit="true" referredVariable="#E0dtw"/>
+            </ownedSource>
+            <ownedBody xsi:type="pivot:PropertyCallExp" name="book" type="#Glwqw" referredProperty="#a2QUZ">
+              <ownedSource xsi:type="pivot:VariableExp" name="1_" type="#NN5rw" isImplicit="true" referredVariable="#vc+Nf"/>
+            </ownedBody>
+            <ownedIterators xsi:type="pivot:IteratorVariable" xmi:id="vc+Nf" name="1_" type="#NN5rw" isImplicit="true" representedParameter="&_1;#//@ownedPackages.0/@ownedClasses.29/@ownedOperations.12/@ownedIterators.0"/>
+          </ownedBody>
+          <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="E0dtw" name="self" type="#3Dts5"/>
+        </ownedExpression>
+      </ownedProperties>
+      <ownedProperties xmi:id="5TchJ" name="Loan" type="#,Cpir" isImplicit="true" opposite="#L1V5Y"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="NN5rw" name="Loan" superClasses="&_1;#zfDWR">
+      <ownedProperties xmi:id="a2QUZ" name="book" type="#Glwqw"/>
+      <ownedProperties xmi:id="L1V5Y" name="member" type="#3Dts5"/>
+      <ownedProperties xmi:id="fJcUZ" name="date" isRequired="false" type="pivot:DataType &_0;#e1k9o"/>
+      <ownedProperties xmi:id="hHITx" name="Library" isRequired="false" type="#YbBrd" isImplicit="true" opposite="#T2UYK"/>
+      <ownedProperties xmi:id="PR3SE" name="Book" type="#QRp9p" isImplicit="true" opposite="#J5iLN"/>
+      <ownedProperties xmi:id="AwzUN" name="Member" type="#ZDwqN" isImplicit="true" opposite="#2sZNR"/>
+    </ownedClasses>
+  </ownedPackages>
+  <ownedPackages name="$$" URI="http://www.eclipse.org/ocl/2015/Orphanage" nsPrefix="orphanage">
+    <ownedClasses xsi:type="pivot:SetType" xmi:id="vRt9p" name="Set" superClasses="#XnB7o" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#Glwqw" formal="&_1;#ODsm5"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:SetType" xmi:id="eDtir" name="Set" superClasses="#GZBgq" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#NN5rw" formal="&_1;#ODsm5"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:SetType" xmi:id="4D0qN" name="Set" superClasses="#gZIoM" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#3Dts5" formal="&_1;#ODsm5"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" xmi:id="ZDwqN" name="Bag" superClasses="#veYsc">
+      <ownedBindings>
+        <ownedSubstitutions actual="#3Dts5" formal="&_1;#k2OA6"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" xmi:id=",Cpir" name="Bag" superClasses="#VeRk6">
+      <ownedBindings>
+        <ownedSubstitutions actual="#NN5rw" formal="&_1;#k2OA6"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" xmi:id="VQp9p" name="Bag" superClasses="#msR,4" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#Glwqw" formal="&_1;#k2OA6"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" xmi:id="QRp9p" name="Bag" superClasses="#msR,4">
+      <ownedBindings>
+        <ownedSubstitutions actual="#Glwqw" formal="&_1;#k2OA6"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="XnB7o" name="UniqueCollection" superClasses="#msR,4">
+      <ownedBindings>
+        <ownedSubstitutions actual="#Glwqw" formal="&_1;#jdfjE"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="GZBgq" name="UniqueCollection" superClasses="#VeRk6">
+      <ownedBindings>
+        <ownedSubstitutions actual="#NN5rw" formal="&_1;#jdfjE"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="gZIoM" name="UniqueCollection" superClasses="#veYsc">
+      <ownedBindings>
+        <ownedSubstitutions actual="#3Dts5" formal="&_1;#jdfjE"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="veYsc" name="Collection" superClasses="&_1;#jbMkR">
+      <ownedBindings>
+        <ownedSubstitutions actual="#3Dts5" formal="&_1;#qs59R"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="VeRk6" name="Collection" superClasses="&_1;#jbMkR">
+      <ownedBindings>
+        <ownedSubstitutions actual="#NN5rw" formal="&_1;#qs59R"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="msR,4" name="Collection" superClasses="&_1;#jbMkR">
+      <ownedBindings>
+        <ownedSubstitutions actual="#Glwqw" formal="&_1;#qs59R"/>
+      </ownedBindings>
+    </ownedClasses>
+  </ownedPackages>
+</pivot:Model>

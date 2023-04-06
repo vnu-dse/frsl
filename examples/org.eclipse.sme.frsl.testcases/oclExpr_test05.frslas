@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE frsl:FrslModel [
+<!ENTITY _0 "http://www.eclipse.org/ocl/2015/Library.oclas">
+]>
+<frsl:FrslModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL"
+    xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot" xsi:schemaLocation="http://www.xtext.org/sme/FRSL java://org.eclipse.sme.frsl.FrslPackage http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.pivot.PivotPackage"
+    xmi:id="AAAAA" name="oclExpr_test05.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/oclExpr_test05.frsl"
+    xmiidVersion="1">
+  <ownedPackages xmi:id="ILni6" name="SetTypeTest">
+    <ownedClasses xmi:id="uiX7a" name="A" superClasses="#i2L7d"/>
+    <ownedClasses xmi:id="i2L7d" name="_DomainClass" superClasses="&_0;#zfDWR">
+      <ownedProperties xmi:id="HU21a" name="isProblDom" type="pivot:PrimitiveType &_0;#XEMMs"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:AssociationClass" xmi:id="0oJKS" name="_Tracks" superClasses="&_0;#zfDWR">
+      <ownedProperties xmi:id="8ep3c" name="problObj" type="#i2L7d"/>
+      <ownedProperties xmi:id="vXzXf" name="swObj" type="#i2L7d"/>
+    </ownedClasses>
+  </ownedPackages>
+  <ownedPackages xmi:id="xajEA" name="usecase">
+    <ownedClasses xmi:id="8aLkc" name="UsecaseA" superClasses="&_0;#zfDWR">
+      <ownedOperations xmi:id="S29EE" name="enter_UsecaseA" type="pivot:PrimitiveType &_0;#XEMMs"/>
+      <ownedOperations xmi:id="covg8" name="step1_actor" type="pivot:PrimitiveType &_0;#XEMMs"/>
+      <ownedProperties xmi:id="84EE3" name="objASet" type="#TYdFq"/>
+      <ownedProperties xmi:id="OaRQa" name="objA" type="#uiX7a"/>
+    </ownedClasses>
+  </ownedPackages>
+  <ownedPackages name="$$" URI="http://www.eclipse.org/ocl/2015/Orphanage" nsPrefix="orphanage">
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="TYdFq" name="Collection" superClasses="&_0;#jbMkR" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#uiX7a" formal="&_0;#qs59R"/>
+      </ownedBindings>
+    </ownedClasses>
+  </ownedPackages>
+  <actor name="ActorA"/>
+  <usecase name="UsecaseA" primaryActor="#//@actor.0">
+    <precondition>
+      <snapshot>
+        <object name="objASet" type="#84EE3" isMatched="true"/>
+        <object name="objA" type="#OaRQa" isMatched="true"/>
+      </snapshot>
+    </precondition>
+    <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+      <preSnapshot/>
+      <postSnapshot/>
+    </firstStep>
+  </usecase>
+</frsl:FrslModel>

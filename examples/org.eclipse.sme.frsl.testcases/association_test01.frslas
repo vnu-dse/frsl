@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1"/>
+  <pivot:Model name="association_test01.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/association_test01.frsl">
+    <ownedImports name="ecore" xmiidVersion="1">
+      <importedNamespace xsi:type="pivot:Package" href="http://www.eclipse.org/emf/2002/Ecore.oclas#+bAnO"/>
+    </ownedImports>
+    <ownedPackages name="ProcessSaleDomain">
+      <ownedClasses name="Product">
+        <ownedProperties name="id">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+        </ownedProperties>
+        <ownedProperties name="Customer_Product" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.4/@ownedProperties.0">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.69"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses name="Customer">
+        <ownedProperties name="name">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#AlwVZ"/>
+        </ownedProperties>
+        <ownedProperties name="Customer_Product" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.4/@ownedProperties.1">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.69"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Customer_Product">
+        <ownedProperties name="products" opposite="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.1">
+          <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.67"/>
+        </ownedProperties>
+        <ownedProperties name="customer" type="/1/@ownedPackages.0/@ownedClasses.1" opposite="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.1"/>
+      </ownedClasses>
+    </ownedPackages>
+    <ownedPackages name="usecase"/>
+  </pivot:Model>
+</xmi:XMI>

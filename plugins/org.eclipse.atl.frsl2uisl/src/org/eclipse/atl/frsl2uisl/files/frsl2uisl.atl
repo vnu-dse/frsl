@@ -1,0 +1,397 @@
+module frsl2uisl;
+
+create OUT : UISL from IN : FRSL, IN2: PIVOT;
+
+helper context FRSL!Step def: getOwnerUC(): FRSL!Usecase =
+	if self.eContainer().oclIsTypeOf(FRSL!Usecase) then
+		self.eContainer()
+	else 
+		if self.eContainer().oclIsKindOf(FRSL!Step) then
+			self.eContainer().getOwnerUC()
+		else
+			self.eContainer().eContainer().getOwnerUC()
+		endif
+	endif;
+
+helper context FRSL!Step def: isFinalStep(): Boolean =
+	if self.nextStep.oclIsUndefined() and self.altFlow -> isEmpty() and self.rejoinFrom
+			-> isEmpty() then
+		true
+	else
+		false
+	endif;
+
+-- helper context FRSL!ActStep def: getAllActStep(): Sequence(FRSL!ActStep) =
+--	FRSL!ActStep.allInstances() -> select(step | step.getOwnerUC() = self);
+
+helper context FRSL!Usecase def: getAllStep(): Sequence(FRSL!Step) =
+	FRSL!Step.allInstances() -> select(step | step.getOwnerUC() = self);
+
+helper context FRSL!Usecase def: isFirstUC() : Boolean =
+	self.eContainer().usecase -> first() = self;
+
+helper context FRSL!Action def: isFirstAction() : Boolean =
+	if (self.eContainer().oclIsTypeOf(FRSL!ActStep)) then
+		if (self.eContainer().action -> first() = self) then 
+			true	
+		else
+			false
+		endif
+	else
+		false
+	endif;	
+
+helper context FRSL!Step def: isActStepContainsAction() : Boolean =
+	if (self.oclIsTypeOf(FRSL!ActStep) and not self.action -> isEmpty()) then
+		true
+	else
+		false
+	endif;
+
+helper context FRSL!Step def: isFirstActStepContainsAction() : Boolean =
+	if (self.isActStepContainsAction() and self.getOwnerUC().getFirstStepContainsAction(self.getOwnerUC().firstStep) = self) then
+		true
+	else
+		false
+	endif;
+
+-- uc.getFirstStepContainsAction(uc.firstStep)
+helper context FRSL!Usecase def: getFirstStepContainsAction(step: FRSL!Step) : FRSL!ActStep =
+	if (step.isActStepContainsAction() ) then
+		step
+	else
+		self.getFirstStepContainsAction(step.nextStep)
+	endif;
+
+-- Check first step
+helper context FRSL!Step def: isFirstStep(): Boolean =
+	self.eContainer().oclIsTypeOf(FRSL!Usecase);
+
+-- Check action : type is outputAct
+helper context FRSL!Action def: isOutputAct() : Boolean =
+	if self.type = 'outputAct' then
+		true
+	else
+		false
+	endif;
+
+-- Check action : type is inputAct
+helper context FRSL!Action def: isInputAct() : Boolean =
+	if self.type = 'inputAct' then
+		true
+	else
+		false
+	endif;
+
+helper context FRSL!Action def: isActionInFinalStep(): Boolean = 
+	self.eContainer().isFinalStep();
+
+helper context FRSL!Action def: isActionContainsPrimitiveTypeProperty(): Boolean =
+	if(self.objVars.size() = 0) then
+		false
+	else
+		if(self.objVars.first().type.type.oclIsKindOf(FRSL!PrimitiveType)) then
+			true
+		else
+			false
+		endif
+	endif;
+
+helper context FRSL!Action def: isActionContainsSequenceClassProperty(): Boolean = 
+	if(self.objVars.size() = 0) then
+		false
+	else
+		if(self.objVars.first().type.ownedExpression.ownedBody.oclIsTypeOf(FRSL!CollectionLiteralExp)) then
+			true
+		else 
+			false
+		endif
+	endif;
+
+rule FRSLModel2DSLGUI {
+	from 
+		m: FRSL!FrslModel
+	to
+		dsl: UISL!DSLGUI(
+			interactionFlowModelElement <- m.usecase,
+			interactionFlowModelElement <- FRSL!Step.allInstances()->select(step | not step.isFirstStep())
+		)
+	
+}
+
+rule Usecase2ViewContainerDefault {
+	from 
+		uc: FRSL!Usecase (
+			uc.isFirstUC()
+		)
+	to
+		pos: UISL!ViewContainer(
+			name <- uc.name,
+			isDefault <- true,
+			viewElement <- uc.firstStep.action,
+			outInteractionFlows <- flow
+			-- description <- uc.description
+		),
+		flow: UISL!NavigationFlow(
+			name <- 'Next',
+			targetInteractionFlowElement <- uc.firstStep.nextStep
+		)
+}
+
+
+
+rule Usecase2ViewContainerHidden {
+	from 
+		uc: FRSL!Usecase (
+			not uc.isFirstUC()
+		)
+	to
+		pos: UISL!ViewContainer(
+			name <- uc.name,
+			isDefault <- false,
+			viewElement <- uc.firstStep.action,
+			outInteractionFlows <- flow
+			-- description <- uc.description
+		),
+		flow: UISL!NavigationFlow(
+			name <- 'Next step',
+			targetInteractionFlowElement <- uc.firstStep.nextStep
+		)
+}
+
+
+-- Not for first step contains action
+
+-- ActStep
+rule ActStep2ViewContainer{
+	from 
+		step: FRSL!ActStep (
+			not step.isFirstStep() and not step.isFinalStep()
+		)
+	to
+		page: UISL!ViewContainer(
+		name <- step.getOwnerUC().name + ' ' + step.name,
+			isDefault <- false,
+			outInteractionFlows <- flow,
+			viewElement <- step.action->select(act | act.objVars.size() > 0),
+			outInteractionFlows <-   step.action->select(act | act.objVars.size() = 0)
+			
+		),
+		flow: UISL!NavigationFlow(
+			name <- 'Next',
+			targetInteractionFlowElement <- step.nextStep
+		)
+}
+
+-- RejoinStep
+rule RejoinStep2FormContainer{
+	from 
+		step: FRSL!RejoinStep (
+			not step.isFirstStep() and not step.isFinalStep()
+		)
+	to 
+		form: UISL!FormComponent(
+			name <- step.name,
+			outInteractionFlows <- flowRepeat,
+			outInteractionFlows <- flow
+		),
+		flow: UISL!NavigationFlow(
+			name <- 'Next',
+			targetInteractionFlowElement <- step.nextStep,
+			sourceInteractionFlowElement <- step.preStep
+		),
+		flowRepeat: UISL!NavigationFlow(
+			name <- 'Repeat',
+			targetInteractionFlowElement <- step.rejoinTo,
+			sourceInteractionFlowElement <- step.preStep
+		)
+		
+}
+
+-- UCStep
+rule UCStep2FormContainer {
+	from
+		step: FRSL!UCStep (
+			not step.isFirstStep() and not step.isFinalStep()
+		)
+	to 
+		form: UISL!FormComponent(
+			name <- step.name,
+			outInteractionFlows <- flow,
+			inInteractionFlowBlock <- flow2
+		),
+		flow: UISL!NavigationFlow(
+			name <- step.name,
+			targetInteractionFlowElement <- step.includedUC,
+			sourceInteractionFlowElement <- step.preStep
+		),
+		flow2: UISL!NavigationFlow(
+			name <- step.includedUC.getAllStep() -> select(step | step.isFinalStep()).first().name,
+			targetInteractionFlowElement <- step.nextStep,
+			sourceInteractionFlowElement <- step.includedUC.getAllStep() -> select(step | step.isFinalStep()).first()
+		)
+}
+
+-- end
+
+-- For final step 
+
+-- ActStep
+rule ActStep2ViewContainer2{
+	from 
+		step: FRSL!ActStep (
+			step.isFinalStep()
+		)
+	to
+		page: UISL!ViewContainer(
+		name <- step.getOwnerUC().name + ' ' + step.name,
+			isDefault <- false,
+			viewElement <- step.action
+	)
+}
+
+-- RejoinStep
+rule RejoinStep2FormContainer2{
+	from 
+		step: FRSL!RejoinStep (
+			step.isFinalStep()
+		)
+	to 
+		form: UISL!FormComponent(
+			name <- step.name,
+			outInteractionFlows <- flowRepeat
+		),
+		flowRepeat: UISL!NavigationFlow(
+			name <- 'Repeat',
+			targetInteractionFlowElement <- step.rejoinTo,
+			sourceInteractionFlowElement <- step.preStep
+		)
+		
+}
+
+-- UCStep
+rule UCStep2FormContainer2 {
+	from
+		step: FRSL!UCStep (
+			step.isFinalStep()
+		)
+	to 
+		form: UISL!FormComponent(
+			name <- step.name,
+			outInteractionFlows <- flow
+		),
+		flow: UISL!NavigationFlow(
+			name <- step.name,
+			targetInteractionFlowElement <- step.includedUC,
+			sourceInteractionFlowElement <- step.preStep
+		)
+}
+
+-- end
+
+
+-- Property type = Primitive Type
+rule ActorAction2Form {
+	from 
+		actorAction : FRSL!ActorAction (
+			actorAction.isInputAct() and actorAction.isActionContainsPrimitiveTypeProperty()
+		)
+	to
+		form: UISL!FormComponent(
+			name <- actorAction.objVars.first().name
+			-- fields <- actorAction.objVars.first().name
+		)
+	
+}
+
+--rule ActorAction2NavigationFlow {
+--	from actorAction : FRSL!ActorAction(
+--			actorAction.isInputAct() and actorAction.objVars.size() = 0
+--		)
+--	to 
+--		flow: UISL!NavigationFlow(
+--			name <- actorAction.description,
+--			targetInteractionFlowElement <- actorAction.eContainer().nextStep
+--		)
+--		
+--}
+
+--rule ActorAction2Form2 {
+--	from 
+--		actorAction : FRSL!ActorAction (
+--			actorAction.isInputAct() and actorAction.objVars.first().type.ownedExpression.ownedBody.oclIsTypeOf(FRSL!PropertyCallExp)
+--		)
+--	to
+--		form: UISL!FormComponent(
+--			name <- actorAction.objVars.first().name,
+--			fields <- actorAction.objVars.first().type.ownedExpression.ownedBody.name	
+--		)
+--	
+--}
+
+-- Property type = Sequence class
+--rule ActorAction2Form2 {
+--	from 
+--		actorAction : FRSL!ActorAction (
+--			actorAction.isInputAct() and actorAction.objVars.first().type.ownedExpression.ownedBody.oclIsTypeOf(FRSL!CollectionLiteralExp)
+--		)
+--	to
+--		form: UISL!FormComponent(
+--			name <- actorAction.objVars.first().name,
+--			fields <- actorAction.objVars.first().type.ownedExpression.ownedBody.ownedParts->collect(a | a.ownedItem.name)			
+--		)
+--	
+--}
+
+-- Property type = Sequence class
+rule SystemAction2List {
+	from 
+		systemAction : FRSL!SystemAction (
+			systemAction.isOutputAct() and systemAction.isActionContainsSequenceClassProperty()
+		)
+	to
+	 	list: UISL!ListComponent(
+	 		name <- systemAction.objVars.first().name,
+			columns <- systemAction.objVars.first().type.ownedExpression.ownedBody.ownedParts->collect(a | a.ownedItem.name)			
+	 	)
+	
+}
+
+-- Property type = Primitive Type
+rule SystemAction2Form {
+	from 
+		systemAction : FRSL!SystemAction (
+			systemAction.isOutputAct() and systemAction.isActionContainsPrimitiveTypeProperty()
+		)
+	to
+	 	list: UISL!FormComponent(
+	 		name <- systemAction.objVars.first().name
+			-- columns <- systemAction.objVars.first().name
+	 	)
+	
+}
+
+
+--rule SystemActionFinal2Message {
+--	from 
+--		systemAction : FRSL!SystemAction(
+--			systemAction.isOutputAct() and systemAction.isActionInFinalStep()
+--		)
+--	to 
+--		msg: UISL!MessageComponent(
+--			name <- systemAction.objVars.first().name,
+--			msg <- 'Finish'
+--		)
+--}
+
+rule SystemAction2Message {
+	from systemAction : FRSL!SystemAction(
+			systemAction.isOutputAct() and systemAction.objVars.size() = 0
+		)
+	to 
+		m: UISL!MessageComponent(
+			msg <- systemAction.description,
+			name <- 'Message'
+		)
+		
+}

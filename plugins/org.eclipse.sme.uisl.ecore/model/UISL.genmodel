@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/org.eclipse.sme.uisl.ecore/src-gen" creationIcons="false" editDirectory="org.eclipse.sme.uisl.edit/src-gen"
+    editorDirectory="org.eclipse.sme.uisl.editor/src-gen" modelPluginID="UISL" modelName="UISL"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>UISL.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="UISL" disposableProviderFactory="true" ecorePackage="UISL.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="UISL.ecore#//Direction">
+      <genEnumLiterals ecoreEnumLiteral="UISL.ecore#//Direction/in"/>
+      <genEnumLiterals ecoreEnumLiteral="UISL.ecore#//Direction/out"/>
+      <genEnumLiterals ecoreEnumLiteral="UISL.ecore#//Direction/inout"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="UISL.ecore#//InteractionFlowModelElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//InteractionFlowModelElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//InteractionFlowModelElement/description"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="UISL.ecore#//InteractionFlowElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//InteractionFlowElement/inInteractionFlowBlock"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//InteractionFlowElement/pararameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//InteractionFlowElement/outInteractionFlows"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="UISL.ecore#//InteractionFlowBlock">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//InteractionFlowBlock/targetInteractionFlowElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//InteractionFlowBlock/parameterBindingGroup"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference UISL.ecore#//InteractionFlowBlock/sourceInteractionFlowElement"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//ParameterBindingGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ParameterBindingGroup/parameterbindings"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//ParameterBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//ParameterBinding/sourceParameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//ParameterBinding/targetParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//NavigationFlow"/>
+    <genClasses ecoreClass="UISL.ecore#//DataFlow"/>
+    <genClasses ecoreClass="UISL.ecore#//OKFlow"/>
+    <genClasses ecoreClass="UISL.ecore#//ErrorFlow"/>
+    <genClasses image="false" ecoreClass="UISL.ecore#//ViewComponentPart">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ViewComponentPart/subviewcomponentpart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ViewComponentPart/viewElementEvent"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference UISL.ecore#//ViewComponentPart/parentViewComponentPart"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="UISL.ecore#//ViewElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ViewElement/viewElementEvent"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference UISL.ecore#//ViewElement/viewContainer"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="UISL.ecore#//ViewComponent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ViewComponent/viewcomponentpart"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//ViewContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ViewContainer/viewElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//ViewContainer/isLandmark"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//ViewContainer/isDefault"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//ViewContainer/isXOR"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ViewContainer/action"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//ParameterBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//ParameterBlock/direction"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="UISL.ecore#//Event"/>
+    <genClasses ecoreClass="UISL.ecore#//CatchingEvent"/>
+    <genClasses ecoreClass="UISL.ecore#//ThrowingEvent"/>
+    <genClasses ecoreClass="UISL.ecore#//ActionEvent"/>
+    <genClasses ecoreClass="UISL.ecore#//DSLGUI">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//DSLGUI/interactionFlowModelElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//DSLGUI/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//DSLGUI/description"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//FormComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//FormComponent/fields"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//ListComponent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ListComponent/columns"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//MessageComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//MessageComponent/msg"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//DetailsComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//DetailsComponent/options"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//ViewElementEvent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//ViewElementEvent/viewelement"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//ActionBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ActionBlock/actionEvent"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference UISL.ecore#//ActionBlock/viewContainer"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//ModuleDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ModuleDefinition/interactionFlowModelElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//ModuleDefinition/module"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ModuleDefinition/inputPort"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UISL.ecore#//ModuleDefinition/outputPort"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//PortDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//PortDefinition/port"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//Module">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//Module/moduledefinition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//Module/port"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//Port">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//Port/module"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UISL.ecore#//Port/portDefinition"/>
+    </genClasses>
+    <genClasses ecoreClass="UISL.ecore#//Column">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//Column/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UISL.ecore#//Column/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

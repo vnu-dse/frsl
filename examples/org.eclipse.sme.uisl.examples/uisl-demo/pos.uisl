@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<pos_v3:DSLGUI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pos_v3="http://www.example.org/pos_v3">
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales" isDefault="true">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.4"/>
+    <viewElement xsi:type="pos_v3:MessageComponent" name="Message" msg="Welcome !!!!!!!!"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCashPayment" inInteractionFlowBlock="//@interactionFlowModelElement.10/@outInteractionFlows.1">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.15"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCreditPayment" inInteractionFlowBlock="//@interactionFlowModelElement.14/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.19"/>
+    <viewElement xsi:type="pos_v3:FormComponent" name="pinNumber"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleGiftCertPayment">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.24"/>
+    <viewElement xsi:type="pos_v3:FormComponent" name="giftCertId"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales step02" inInteractionFlowBlock="//@interactionFlowModelElement.0/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.5"/>
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="New sale" targetInteractionFlowElement="//@interactionFlowModelElement.5"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales step03" inInteractionFlowBlock="//@interactionFlowModelElement.4/@outInteractionFlows.0 //@interactionFlowModelElement.4/@outInteractionFlows.1">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.6"/>
+    <viewElement xsi:type="pos_v3:ListComponent" name="saleInfor">
+      <columns>id</columns>
+      <columns>total</columns>
+    </viewElement>
+    <viewElement xsi:type="pos_v3:ListComponent" name="cashierInfor">
+      <columns>name</columns>
+    </viewElement>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales step04" inInteractionFlowBlock="//@interactionFlowModelElement.5/@outInteractionFlows.0 //@interactionFlowModelElement.7/@outInteractionFlows.2">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.7"/>
+    <viewElement xsi:type="pos_v3:FormComponent" name="itemId"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales step05" inInteractionFlowBlock="//@interactionFlowModelElement.6/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.8"/>
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.9"/>
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Repeat" targetInteractionFlowElement="//@interactionFlowModelElement.6"/>
+    <viewElement xsi:type="pos_v3:ListComponent" name="itemInfor">
+      <columns>desc</columns>
+      <columns>price</columns>
+      <columns>upc</columns>
+    </viewElement>
+    <viewElement xsi:type="pos_v3:ListComponent" name="saleInfor">
+      <columns>total</columns>
+    </viewElement>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:FormComponent" inInteractionFlowBlock="//@interactionFlowModelElement.7/@outInteractionFlows.0"/>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales step06" inInteractionFlowBlock="//@interactionFlowModelElement.7/@outInteractionFlows.1">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.10"/>
+    <viewElement xsi:type="pos_v3:FormComponent" name="paymentInfor"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales step07" inInteractionFlowBlock="//@interactionFlowModelElement.9/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.11"/>
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="step08" targetInteractionFlowElement="//@interactionFlowModelElement.1"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:FormComponent" name="step08" inInteractionFlowBlock="//@interactionFlowModelElement.10/@outInteractionFlows.0"/>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales step09" inInteractionFlowBlock="//@interactionFlowModelElement.18/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.13"/>
+    <viewElement xsi:type="pos_v3:ListComponent" name="saleInfor2AccSys">
+      <columns>sale</columns>
+      <columns>payment</columns>
+    </viewElement>
+    <viewElement xsi:type="pos_v3:ListComponent" name="saleInfor2InvSys">
+      <columns>sale</columns>
+      <columns>payment</columns>
+    </viewElement>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="ProcessSales step10" inInteractionFlowBlock="//@interactionFlowModelElement.12/@outInteractionFlows.0">
+    <viewElement xsi:type="pos_v3:MessageComponent" name="Message" msg="Finish !!!"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:FormComponent" name="step08a">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="step08a" targetInteractionFlowElement="//@interactionFlowModelElement.2"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCashPayment step02" inInteractionFlowBlock="//@interactionFlowModelElement.1/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.16"/>
+    <viewElement xsi:type="pos_v3:FormComponent" name="amountTendered"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCashPayment step3" inInteractionFlowBlock="//@interactionFlowModelElement.15/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.17"/>
+    <viewElement xsi:type="pos_v3:FormComponent" name="balanceDue"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCashPayment step4" inInteractionFlowBlock="//@interactionFlowModelElement.16/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.18"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCashPayment step5" inInteractionFlowBlock="//@interactionFlowModelElement.17/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="step5" targetInteractionFlowElement="//@interactionFlowModelElement.12"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCreditPayment step02" inInteractionFlowBlock="//@interactionFlowModelElement.2/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.20"/>
+    <viewElement xsi:type="pos_v3:ListComponent" name="paymentAuth">
+      <columns>authService</columns>
+      <columns>creditCard</columns>
+      <columns>pinNumber</columns>
+      <columns>total</columns>
+    </viewElement>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCreditPayment step03" inInteractionFlowBlock="//@interactionFlowModelElement.19/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.21"/>
+    <viewElement xsi:type="pos_v3:FormComponent" name="approvalInfo"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCreditPayment step04" inInteractionFlowBlock="//@interactionFlowModelElement.20/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.22"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCreditPayment step05" inInteractionFlowBlock="//@interactionFlowModelElement.21/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.23"/>
+    <viewElement xsi:type="pos_v3:ListComponent" name="creditPaymentInfor">
+      <columns>sale</columns>
+      <columns>creditPayment</columns>
+    </viewElement>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleCreditPayment step06" inInteractionFlowBlock="//@interactionFlowModelElement.22/@outInteractionFlows.0"/>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleGiftCertPayment step02" inInteractionFlowBlock="//@interactionFlowModelElement.3/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.25"/>
+    <viewElement xsi:type="pos_v3:ListComponent" name="giftCertInfor">
+      <columns>id</columns>
+      <columns>amount</columns>
+    </viewElement>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleGiftCertPayment step03" inInteractionFlowBlock="//@interactionFlowModelElement.24/@outInteractionFlows.0">
+    <outInteractionFlows xsi:type="pos_v3:NavigationFlow" name="Next step" targetInteractionFlowElement="//@interactionFlowModelElement.26"/>
+    <viewElement xsi:type="pos_v3:FormComponent" name="giftPaymentAmount"/>
+  </interactionFlowModelElement>
+  <interactionFlowModelElement xsi:type="pos_v3:ViewContainer" name="HandleGiftCertPayment step04" inInteractionFlowBlock="//@interactionFlowModelElement.25/@outInteractionFlows.0">
+    <viewElement xsi:type="pos_v3:ListComponent" name="giftCertInfor">
+      <columns>id</columns>
+      <columns>amount</columns>
+    </viewElement>
+  </interactionFlowModelElement>
+</pos_v3:DSLGUI>

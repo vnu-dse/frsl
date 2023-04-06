@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="frslcs" nsURI="http://www.xtext.org/sme/FRSL" nsPrefix="frslcs">
+  <eClassifiers xsi:type="ecore:EClass" name="Frsl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domainModel" eType="ecore:EClass platform:/resource/org.eclipse.ocl.xtext.oclinecore/model/OCLinEcoreCS.ecore#//TopLevelCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usecase" upperBound="-1"
+        eType="#//Usecase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Usecase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryActor" eType="#//Actor"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondaryActors" upperBound="-1"
+        eType="#//Actor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="precondition" eType="#//UsecasePrecondition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postcondition" eType="#//UsecasePostcondition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstStep" eType="#//Step"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsecasePrecondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="snapshot" eType="#//SnapshotPattern"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsecasePostcondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="snapshot" eType="#//SnapshotPattern"
+        containment="true"/>
+  </eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preSnapshot" eType="#//SnapshotPattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postSnapshot" eType="#//SnapshotPattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="curStep" eType="#//Step"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextStep" eType="#//Step"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="altFlow" upperBound="-1"
+        eType="#//AltFlow" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="joinFrom" eType="#//Rejoin"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="include" eType="#//Include"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extend" eType="#//ExtensionPoint"
+        containment="true"/>
+ </eClassifiers>
+ <eClassifiers xsi:type="ecore:EClass" name="Include">
+	<eStructuralFeatures xsi:type="ecore:EReference" name="includingUC" eType="#//Usecase"/>
+ </eClassifiers>
+ <eClassifiers xsi:type="ecore:EClass" name="Extend">
+ 	<eStructuralFeatures xsi:type="ecore:EReference" name="extendedUC" eType="#//Usecase"/>
+</eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="ExtensionPoint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" upperBound="-1" eType="#//Step"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//SnapshotPattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extend" eType="#//Extend"
+        containment="true"/>
+  </eClassifiers>
+
+<eClassifiers xsi:type="ecore:EClass" name="AltFlow">
+	<eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//SnapshotPattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baseStep" eType="#//Step" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="altStep"  eType="#//Step" containment="true"/>
+</eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="Rejoin">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="joinTo" eType="#//SnapshotPattern"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//SnapshotPattern"
+        containment="true"/>
+</eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="SnapshotPattern">
+	<eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objects" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+        eType="#//VarLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
+        containment="true"/>
+</eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="InChannel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//ObjectVar" containment="true"/>
+</eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectVar">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ClassCS"
+        containment="true"/>
+</eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="VarLink">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objVar" upperBound="-1" eType="#//ObjectVar" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assoc" eType="#//Association"
+        containment="true"/>
+ </eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="Association">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+</eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="Constraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.ecore#//ExpSpecificationCS"
+        containment="true"/>
+</eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="OutChannel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedActor" eType="#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueSpec" upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.ecore#//ExpSpecificationCS"
+        containment="true"/>
+  </eClassifiers>
+<eClassifiers xsi:type="ecore:EClass" name="Actor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+</eClassifiers>
+</ecore:EPackage>

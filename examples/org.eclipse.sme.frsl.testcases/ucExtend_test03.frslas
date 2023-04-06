@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1">
+    <usecase name="A">
+      <primaryActor name="ActorA"/>
+      <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+        <nextStep xsi:type="frsl:ActStep" name="step02">
+          <nextStep xsi:type="frsl:ActStep" name="step03" isActorStep="true">
+            <preSnapshot/>
+            <postSnapshot/>
+          </nextStep>
+          <preSnapshot/>
+          <postSnapshot/>
+        </nextStep>
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+    </usecase>
+    <usecase name="B">
+      <primaryActor name="ActorB"/>
+      <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+        <nextStep xsi:type="frsl:ActStep" name="step02">
+          <nextStep xsi:type="frsl:ActStep" name="step03" isActorStep="true">
+            <preSnapshot/>
+            <postSnapshot/>
+          </nextStep>
+          <preSnapshot/>
+          <postSnapshot/>
+        </nextStep>
+        <preSnapshot/>
+        <postSnapshot/>
+      </firstStep>
+      <extPoint name="extPoint" location="/0/@usecase.1/@firstStep /0/@usecase.1/@firstStep/@nextStep">
+        <condition/>
+      </extPoint>
+    </usecase>
+  </frsl:FrslModel>
+  <pivot:Model name="ucExtend_test03.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/ucExtend_test03.frsl">
+    <ownedPackages name="usecase">
+      <ownedClasses name="A" superClasses="/1/@ownedPackages.0/@ownedClasses.2 /1/@ownedPackages.0/@ownedClasses.4 /1/@ownedPackages.0/@ownedClasses.6 /1/@ownedPackages.0/@ownedClasses.8 /1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18"/>
+      <ownedClasses name="B" superClasses="/1/@ownedPackages.0/@ownedClasses.2 /1/@ownedPackages.0/@ownedClasses.4 /1/@ownedPackages.0/@ownedClasses.6 /1/@ownedPackages.0/@ownedClasses.8 /1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedOperations name="step2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step3_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="DomainClass" superClasses="/1/@ownedPackages.0/@ownedClasses.4 /1/@ownedPackages.0/@ownedClasses.6 /1/@ownedPackages.0/@ownedClasses.8 /1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks" superClasses="/1/@ownedPackages.0/@ownedClasses.4 /1/@ownedPackages.0/@ownedClasses.6 /1/@ownedPackages.0/@ownedClasses.8 /1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass" superClasses="/1/@ownedPackages.0/@ownedClasses.6 /1/@ownedPackages.0/@ownedClasses.8 /1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks" superClasses="/1/@ownedPackages.0/@ownedClasses.6 /1/@ownedPackages.0/@ownedClasses.8 /1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.4"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.4"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass" superClasses="/1/@ownedPackages.0/@ownedClasses.8 /1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks" superClasses="/1/@ownedPackages.0/@ownedClasses.8 /1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.6"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.6"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass" superClasses="/1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks" superClasses="/1/@ownedPackages.0/@ownedClasses.10 /1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.8"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.8"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass" superClasses="/1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks" superClasses="/1/@ownedPackages.0/@ownedClasses.12 /1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.10"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.10"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass" superClasses="/1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks" superClasses="/1/@ownedPackages.0/@ownedClasses.14 /1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.12"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.12"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass" superClasses="/1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks" superClasses="/1/@ownedPackages.0/@ownedClasses.18">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.14"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.14"/>
+      </ownedClasses>
+      <ownedClasses name="A" superClasses="/1/@ownedPackages.0/@ownedClasses.18">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step3_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="B" superClasses="/1/@ownedPackages.0/@ownedClasses.18">
+        <ownedOperations name="step1_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step2_system">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+        <ownedOperations name="step3_actor">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedOperations>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.18"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.18"/>
+      </ownedClasses>
+    </ownedPackages>
+  </pivot:Model>
+</xmi:XMI>

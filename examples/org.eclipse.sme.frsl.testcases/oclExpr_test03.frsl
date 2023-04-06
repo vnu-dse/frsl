@@ -1,0 +1,22 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+package Inheritance{
+	class A{
+		attribute value: Integer;
+	}
+	class B extends A{
+	}
+}
+
+actor ActorA
+end
+
+usecase UsecaseA
+	primaryActor = ActorA
+	ucPrecondition
+		objB: B;
+		[objB.value > 100]
+	end
+	actStep step01 from
+	to
+	end
+end

@@ -1,0 +1,11 @@
+package P{
+	class A{
+	}
+	class B{
+	}
+}
+
+association AB
+	a: A
+	b: P::B
+end

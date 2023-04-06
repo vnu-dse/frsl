@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot">
+  <frsl:FrslModel domainModel="/1"/>
+  <pivot:Model name="domainModel_test03.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/domainModel_test03.frsl">
+    <ownedImports name="ecore" xmiidVersion="1">
+      <importedNamespace xsi:type="pivot:Package" href="http://www.eclipse.org/emf/2002/Ecore.oclas#+bAnO"/>
+    </ownedImports>
+    <ownedPackages name="tutorial" URI="http://www.eclipse.org/mdt/ocl/oclinecore/tutorial" nsPrefix="tut">
+      <ownedClasses name="Library">
+        <ownedProperties name="name">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#AlwVZ"/>
+        </ownedProperties>
+        <ownedProperties name="books" isComposite="true" opposite="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.2">
+          <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.67"/>
+        </ownedProperties>
+        <ownedProperties name="loans" isComposite="true" opposite="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.3">
+          <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+        </ownedProperties>
+        <ownedProperties name="members" isComposite="true" opposite="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.1">
+          <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.73"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses name="Book">
+        <ownedInvariants name="SufficientCopies">
+          <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="library?.loans->select((book = self))->size() &lt;= copies">
+            <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+            <ownedBody xsi:type="pivot:OperationCallExp" name="&lt;=">
+              <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+              <ownedSource xsi:type="pivot:OperationCallExp" name="size">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+                <ownedSource xsi:type="pivot:IteratorExp" name="select">
+                  <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+                  <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" isRequired="false" isSafe="true" referredProperty="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.2">
+                    <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+                    <ownedSource xsi:type="pivot:PropertyCallExp" name="library" isRequired="false" type="/1/@ownedPackages.0/@ownedClasses.0" referredProperty="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.2">
+                      <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.1" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedInvariants.0/@ownedSpecification/@ownedContext"/>
+                    </ownedSource>
+                  </ownedSource>
+                  <ownedBody xsi:type="pivot:OperationCallExp" name="=">
+                    <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+                    <ownedSource xsi:type="pivot:PropertyCallExp" name="book" type="/1/@ownedPackages.0/@ownedClasses.1" referredProperty="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.0">
+                      <ownedSource xsi:type="pivot:VariableExp" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedInvariants.0/@ownedSpecification/@ownedBody/@ownedSource/@ownedSource/@ownedIterators.0"/>
+                    </ownedSource>
+                    <ownedArguments xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.1" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedInvariants.0/@ownedSpecification/@ownedContext"/>
+                    <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#SYOvl"/>
+                  </ownedBody>
+                  <ownedIterators xsi:type="pivot:IteratorVariable" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true">
+                    <representedParameter href="http://www.eclipse.org/ocl/2015/Library.oclas#//@ownedPackages.0/@ownedClasses.29/@ownedOperations.14/@ownedIterators.0"/>
+                  </ownedIterators>
+                  <referredIteration href="http://www.eclipse.org/ocl/2015/Library.oclas#u7yy0"/>
+                </ownedSource>
+                <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#eYPCX"/>
+              </ownedSource>
+              <ownedArguments xsi:type="pivot:PropertyCallExp" name="copies" referredProperty="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.1">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+                <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.1" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedInvariants.0/@ownedSpecification/@ownedContext"/>
+              </ownedArguments>
+              <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#8brvY"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" name="self" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+          </ownedSpecification>
+        </ownedInvariants>
+        <ownedOperations name="isAvailable">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+          <bodyExpression xsi:type="pivot:ExpressionInOCL" body="loans->size() = copies">
+            <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+            <ownedBody xsi:type="pivot:OperationCallExp" name="=">
+              <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+              <ownedSource xsi:type="pivot:OperationCallExp" name="size">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" referredProperty="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.3">
+                  <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+                  <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.1" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedOperations.0/@bodyExpression/@ownedContext"/>
+                </ownedSource>
+                <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#eYPCX"/>
+              </ownedSource>
+              <ownedArguments xsi:type="pivot:PropertyCallExp" name="copies" referredProperty="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.1">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+                <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.1" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedOperations.0/@bodyExpression/@ownedContext"/>
+              </ownedArguments>
+              <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#UJEtV"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" name="self" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+          </bodyExpression>
+        </ownedOperations>
+        <ownedProperties name="name">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#AlwVZ"/>
+        </ownedProperties>
+        <ownedProperties name="copies">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+        </ownedProperties>
+        <ownedProperties name="library" isRequired="false" type="/1/@ownedPackages.0/@ownedClasses.0" opposite="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.1"/>
+        <ownedProperties name="loans" isDerived="true" isVolatile="true" opposite="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.4">
+          <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+          <ownedExpression xsi:type="pivot:ExpressionInOCL" body="library?.loans->select(book = self)">
+            <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+            <ownedBody xsi:type="pivot:IteratorExp" name="select">
+              <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" isRequired="false" isSafe="true" referredProperty="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.2">
+                <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="library" isRequired="false" type="/1/@ownedPackages.0/@ownedClasses.0" referredProperty="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.2">
+                  <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.1" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.3/@ownedExpression/@ownedContext"/>
+                </ownedSource>
+              </ownedSource>
+              <ownedBody xsi:type="pivot:OperationCallExp" name="=">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="book" type="/1/@ownedPackages.0/@ownedClasses.1" referredProperty="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.0">
+                  <ownedSource xsi:type="pivot:VariableExp" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.3/@ownedExpression/@ownedBody/@ownedIterators.0"/>
+                </ownedSource>
+                <ownedArguments xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.1" referredVariable="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.3/@ownedExpression/@ownedContext"/>
+                <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#SYOvl"/>
+              </ownedBody>
+              <ownedIterators xsi:type="pivot:IteratorVariable" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true">
+                <representedParameter href="http://www.eclipse.org/ocl/2015/Library.oclas#//@ownedPackages.0/@ownedClasses.29/@ownedOperations.14/@ownedIterators.0"/>
+              </ownedIterators>
+              <referredIteration href="http://www.eclipse.org/ocl/2015/Library.oclas#u7yy0"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" name="self" type="/1/@ownedPackages.0/@ownedClasses.1"/>
+          </ownedExpression>
+        </ownedProperties>
+        <ownedProperties name="Member" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.3">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.76"/>
+        </ownedProperties>
+        <ownedProperties name="Loan" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.0">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.77"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses name="Member">
+        <ownedInvariants name="AtMostTwoLoans">
+          <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="loans->size() &lt;= 2">
+            <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+            <ownedBody xsi:type="pivot:OperationCallExp" name="&lt;=">
+              <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+              <ownedSource xsi:type="pivot:OperationCallExp" name="size">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" referredProperty="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.2">
+                  <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+                  <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.2" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.2/@ownedInvariants.0/@ownedSpecification/@ownedContext"/>
+                </ownedSource>
+                <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#eYPCX"/>
+              </ownedSource>
+              <ownedArguments xsi:type="pivot:IntegerLiteralExp" integerSymbol="2">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#tYtCd"/>
+              </ownedArguments>
+              <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#8brvY"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" name="self" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+          </ownedSpecification>
+        </ownedInvariants>
+        <ownedInvariants name="UniqueLoans">
+          <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="loans->isUnique(book)">
+            <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+            <ownedBody xsi:type="pivot:IteratorExp" name="isUnique">
+              <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" referredProperty="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.2">
+                <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+                <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.2" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.2/@ownedInvariants.1/@ownedSpecification/@ownedContext"/>
+              </ownedSource>
+              <ownedBody xsi:type="pivot:PropertyCallExp" name="book" type="/1/@ownedPackages.0/@ownedClasses.1" referredProperty="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.0">
+                <ownedSource xsi:type="pivot:VariableExp" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.2/@ownedInvariants.1/@ownedSpecification/@ownedBody/@ownedIterators.0"/>
+              </ownedBody>
+              <ownedIterators xsi:type="pivot:IteratorVariable" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true">
+                <representedParameter href="http://www.eclipse.org/ocl/2015/Library.oclas#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.36/@ownedIterators.0"/>
+              </ownedIterators>
+              <referredIteration href="http://www.eclipse.org/ocl/2015/Library.oclas#ZQp5M"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" name="self" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+          </ownedSpecification>
+        </ownedInvariants>
+        <ownedProperties name="name2">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#AlwVZ"/>
+        </ownedProperties>
+        <ownedProperties name="library" isRequired="false" type="/1/@ownedPackages.0/@ownedClasses.0" opposite="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.3"/>
+        <ownedProperties name="loans" isDerived="true" isVolatile="true" opposite="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.5">
+          <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+          <ownedExpression xsi:type="pivot:ExpressionInOCL" body="library?.loans->select(member = self)">
+            <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+            <ownedBody xsi:type="pivot:IteratorExp" name="select">
+              <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" isRequired="false" isSafe="true" referredProperty="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.2">
+                <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="library" isRequired="false" type="/1/@ownedPackages.0/@ownedClasses.0" referredProperty="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.1">
+                  <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.2" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.2/@ownedExpression/@ownedContext"/>
+                </ownedSource>
+              </ownedSource>
+              <ownedBody xsi:type="pivot:OperationCallExp" name="=">
+                <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="member" type="/1/@ownedPackages.0/@ownedClasses.2" referredProperty="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.1">
+                  <ownedSource xsi:type="pivot:VariableExp" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.2/@ownedExpression/@ownedBody/@ownedIterators.0"/>
+                </ownedSource>
+                <ownedArguments xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.2" referredVariable="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.2/@ownedExpression/@ownedContext"/>
+                <referredOperation href="http://www.eclipse.org/ocl/2015/Library.oclas#SYOvl"/>
+              </ownedBody>
+              <ownedIterators xsi:type="pivot:IteratorVariable" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true">
+                <representedParameter href="http://www.eclipse.org/ocl/2015/Library.oclas#//@ownedPackages.0/@ownedClasses.29/@ownedOperations.14/@ownedIterators.0"/>
+              </ownedIterators>
+              <referredIteration href="http://www.eclipse.org/ocl/2015/Library.oclas#u7yy0"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" name="self" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+          </ownedExpression>
+        </ownedProperties>
+        <ownedProperties name="books" isDerived="true" isVolatile="true" opposite="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.4">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.74"/>
+          <ownedExpression xsi:type="pivot:ExpressionInOCL" body="loans->collect(book)">
+            <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.74"/>
+            <ownedBody xsi:type="pivot:IteratorExp" name="collect">
+              <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.74"/>
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="loans" referredProperty="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.2">
+                <type xsi:type="pivot:SetType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.70"/>
+                <ownedSource xsi:type="pivot:VariableExp" name="self" type="/1/@ownedPackages.0/@ownedClasses.2" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.3/@ownedExpression/@ownedContext"/>
+              </ownedSource>
+              <ownedBody xsi:type="pivot:PropertyCallExp" name="book" type="/1/@ownedPackages.0/@ownedClasses.1" referredProperty="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.0">
+                <ownedSource xsi:type="pivot:VariableExp" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true" referredVariable="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.3/@ownedExpression/@ownedBody/@ownedIterators.0"/>
+              </ownedBody>
+              <ownedIterators xsi:type="pivot:IteratorVariable" name="1_" type="/1/@ownedPackages.0/@ownedClasses.3" isImplicit="true">
+                <representedParameter href="http://www.eclipse.org/ocl/2015/Library.oclas#//@ownedPackages.0/@ownedClasses.29/@ownedOperations.12/@ownedIterators.0"/>
+              </ownedIterators>
+              <referredIteration href="http://www.eclipse.org/ocl/2015/Library.oclas#cs1Yj"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" name="self" type="/1/@ownedPackages.0/@ownedClasses.2"/>
+          </ownedExpression>
+        </ownedProperties>
+        <ownedProperties name="Loan" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.3/@ownedProperties.1">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.77"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses name="Loan">
+        <ownedProperties name="book" type="/1/@ownedPackages.0/@ownedClasses.1" opposite="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.5"/>
+        <ownedProperties name="member" type="/1/@ownedPackages.0/@ownedClasses.2" opposite="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.4"/>
+        <ownedProperties name="date" isRequired="false">
+          <type xsi:type="pivot:DataType" href="http://www.eclipse.org/emf/2002/Ecore.oclas#e1k9o"/>
+        </ownedProperties>
+        <ownedProperties name="Library" isRequired="false" type="/1/@ownedPackages.0/@ownedClasses.0" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.0/@ownedProperties.2"/>
+        <ownedProperties name="Book" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.1/@ownedProperties.3">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.75"/>
+        </ownedProperties>
+        <ownedProperties name="Member" isImplicit="true" opposite="/1/@ownedPackages.0/@ownedClasses.2/@ownedProperties.2">
+          <type xsi:type="pivot:BagType" href="http://www.eclipse.org/ocl/2015/Orphanage.oclas#//@ownedPackages.0/@ownedClasses.76"/>
+        </ownedProperties>
+        <superClasses href="http://www.eclipse.org/ocl/2015/Library.oclas#zfDWR"/>
+      </ownedClasses>
+      <ownedClasses name="DomainClass">
+        <ownedProperties name="isProblDom">
+          <type xsi:type="pivot:PrimitiveType" href="http://www.eclipse.org/ocl/2015/Library.oclas#XEMMs"/>
+        </ownedProperties>
+      </ownedClasses>
+      <ownedClasses xsi:type="pivot:AssociationClass" name="Tracks">
+        <ownedProperties name="problObj" type="/1/@ownedPackages.0/@ownedClasses.4"/>
+        <ownedProperties name="swObj" type="/1/@ownedPackages.0/@ownedClasses.4"/>
+      </ownedClasses>
+    </ownedPackages>
+    <ownedPackages name="usecase"/>
+  </pivot:Model>
+</xmi:XMI>

@@ -1,0 +1,933 @@
+ 	<html>
+        <head>
+            <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+            <link rel="stylesheet" href="style.css"></link>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+            <title>DSL_GUI</title>
+        </head>
+        <body>
+			
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+							<a class="navbar-brand" href="ProcessSales">ProcessSales</a>
+								  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+								    	<span class="navbar-toggler-icon"></span>
+								  </button>
+								  <div class="collapse navbar-collapse" id="navbarNav">
+								  		<ul class="navbar-nav">
+			
+					 					
+			
+								<li class="nav-item active">
+							        	<a class="nav-link" href="HandleGiftCertPayment">HandleGiftCertPayment<span class="sr-only">(current)</span></a>
+							    </li>
+			
+							</ul>
+					  	</div>
+				</nav>
+
+						<div class="v-card defaultPageContainer currentPage" id="Container_1" href="ProcessSales">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_5)">
+									        Next
+									    </button>
+										
+					      
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_2"  href="HandleCashPayment">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCashPayment
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_16)">
+									        Next step
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_3"  href="HandleCreditPayment">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCreditPayment
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+												<div class="input-group mb-4" id="Container_3_Component_1">
+												  	<div class="input-group-prepend">
+												    	<span class="input-group-text" id="basic-pinNumber">pinNumber</span>
+												  	</div>
+												  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										
+												
+												</div>
+													
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_20)">
+									        Next step
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_4"  href="HandleGiftCertPayment">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleGiftCertPayment
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+												<div class="input-group mb-4" id="Container_4_Component_1">
+												  	<div class="input-group-prepend">
+												    	<span class="input-group-text" id="basic-giftCertId">giftCertId</span>
+												  	</div>
+												  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										
+												
+												</div>
+													
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_25)">
+									        Next step
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_5"  href="ProcessSales step02">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales step02
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_6)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_6"  href="ProcessSales step03">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales step03
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+											<div class="card mb-4" id="Container_6_Component_1">
+												<div class="card-header"> 
+													saleInfor
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>id</th>
+										
+																	<th>total</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+										
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+										
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+											<div class="card mb-4" id="Container_6_Component_2">
+												<div class="card-header"> 
+													cashierInfor
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>name</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_7)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_7"  href="ProcessSales step04">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales step04
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+												<div class="input-group mb-4" id="Container_7_Component_1">
+												  	<div class="input-group-prepend">
+												    	<span class="input-group-text" id="basic-itemId">itemId</span>
+												  	</div>
+												  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										
+												
+												</div>
+													
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_8)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_8"  href="ProcessSales step05">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales step05
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+											<div class="card mb-4" id="Container_8_Component_1">
+												<div class="card-header"> 
+													itemInfor
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>desc</th>
+										
+																	<th>price</th>
+										
+																	<th>upc</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+										
+																	<td>value</td>
+										
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+										
+																	<td>value2</td>
+										
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+											<div class="card mb-4" id="Container_8_Component_2">
+												<div class="card-header"> 
+													saleInfor
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>total</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_9)">
+									        Next
+									    </button>
+										
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_10)">
+									        Next
+									    </button>
+										
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_7)">
+									        Repeat
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_10"  href="ProcessSales step06">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales step06
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+												<div class="input-group mb-4" id="Container_10_Component_1">
+												  	<div class="input-group-prepend">
+												    	<span class="input-group-text" id="basic-paymentInfor">paymentInfor</span>
+												  	</div>
+												  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										
+												
+												</div>
+													
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_11)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_11"  href="ProcessSales step07">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales step07
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_12)">
+									        Next
+									    </button>
+										
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_2)">
+									        step08
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_13"  href="ProcessSales step09">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales step09
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+											<div class="card mb-4" id="Container_13_Component_1">
+												<div class="card-header"> 
+													saleInfor2AccSys
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>sale</th>
+										
+																	<th>payment</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+										
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+										
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+											<div class="card mb-4" id="Container_13_Component_2">
+												<div class="card-header"> 
+													saleInfor2InvSys
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>sale</th>
+										
+																	<th>payment</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+										
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+										
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_14)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_14"  href="ProcessSales step10">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        ProcessSales step10
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+					
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_16"  href="HandleCashPayment step02">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCashPayment step02
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+												<div class="input-group mb-4" id="Container_16_Component_1">
+												  	<div class="input-group-prepend">
+												    	<span class="input-group-text" id="basic-amountTendered">amountTendered</span>
+												  	</div>
+												  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										
+												
+												</div>
+													
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_17)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_17"  href="HandleCashPayment step3">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCashPayment step3
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+												<div class="input-group mb-4" id="Container_17_Component_1">
+												  	<div class="input-group-prepend">
+												    	<span class="input-group-text" id="basic-balanceDue">balanceDue</span>
+												  	</div>
+												  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										
+												
+												</div>
+													
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_18)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_18"  href="HandleCashPayment step4">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCashPayment step4
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_19)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_19"  href="HandleCashPayment step5">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCashPayment step5
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_13)">
+									        step5
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_20"  href="HandleCreditPayment step02">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCreditPayment step02
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+											<div class="card mb-4" id="Container_20_Component_1">
+												<div class="card-header"> 
+													paymentAuth
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>authService</th>
+										
+																	<th>creditCard</th>
+										
+																	<th>pinNumber</th>
+										
+																	<th>total</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+										
+																	<td>value</td>
+										
+																	<td>value</td>
+										
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+										
+																	<td>value2</td>
+										
+																	<td>value2</td>
+										
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_21)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_21"  href="HandleCreditPayment step03">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCreditPayment step03
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+												<div class="input-group mb-4" id="Container_21_Component_1">
+												  	<div class="input-group-prepend">
+												    	<span class="input-group-text" id="basic-approvalInfo">approvalInfo</span>
+												  	</div>
+												  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										
+												
+												</div>
+													
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_22)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_22"  href="HandleCreditPayment step04">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCreditPayment step04
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_23)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_23"  href="HandleCreditPayment step05">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCreditPayment step05
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+											<div class="card mb-4" id="Container_23_Component_1">
+												<div class="card-header"> 
+													creditPaymentInfor
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>sale</th>
+										
+																	<th>creditPayment</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+										
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+										
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_24)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_24"  href="HandleCreditPayment step06">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleCreditPayment step06
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+					
+					
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_25"  href="HandleGiftCertPayment step02">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleGiftCertPayment step02
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+											<div class="card mb-4" id="Container_25_Component_1">
+												<div class="card-header"> 
+													giftCertInfor
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>id</th>
+										
+																	<th>amount</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+										
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+										
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_26)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_26"  href="HandleGiftCertPayment step03">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleGiftCertPayment step03
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+												<div class="input-group mb-4" id="Container_26_Component_1">
+												  	<div class="input-group-prepend">
+												    	<span class="input-group-text" id="basic-giftPaymentAmount">giftPaymentAmount</span>
+												  	</div>
+												  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										
+												
+												</div>
+													
+					
+					
+										<button type="button" class="btn btn-success" onclick="navigationPage(Container_27)">
+									        Next
+									    </button>
+										
+								  
+					        </div>
+					
+					    </div>
+
+						<div class="v-card hiddenPage" id="Container_27"  href="HandleGiftCertPayment step04">
+					        <div class="v-card-text">
+					            <nav aria-label="breadcrumb">
+					                <ol class="breadcrumb">
+					                    <li class="breadcrumb-item active" aria-current="page">
+					                        HandleGiftCertPayment step04
+					                    </li>
+					                </ol>
+					            </nav>
+					        </div>
+					
+							<div class="v-card-content">
+											<div class="card mb-4" id="Container_27_Component_1">
+												<div class="card-header"> 
+													giftCertInfor
+												</div>
+												<div class="v-card-content">
+													<table class="table table-striped">
+															<tr>
+																	<th>id</th>
+										
+																	<th>amount</th>
+													        </tr>
+													        <tr>
+																	<td>value</td>
+										
+																	<td>value</td>
+													        </tr>
+													        <tr>
+																	<td>value2</td>
+										
+																	<td>value2</td>
+													        </tr>
+												        
+												    </table>
+										
+												
+												</div>
+											</div>
+					
+					
+								  
+					        </div>
+					
+					    </div>
+
+			
+			               
+
+		</body>
+        <script src="myscript.js"></script>
+    </html>
+

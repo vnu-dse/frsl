@@ -1,0 +1,31 @@
+actor Customer
+end
+
+
+usecase HandlePayment
+	primaryActor = Customer
+	actStep s1 from
+	to
+	end
+end
+usecase ProcessSale
+	description = '...'		
+	primaryActor = Customer
+	actStep s1 from
+	to
+	end
+	rejoinStep s1 when
+	end
+	inclStep HandlePayment
+	end
+	actStep s4 from
+	to
+	end
+	altStep at s1 
+		when
+		end
+		actStep s1a_1 from
+		to
+		end
+	end
+end

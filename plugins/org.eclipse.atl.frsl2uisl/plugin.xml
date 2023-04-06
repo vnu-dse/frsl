@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.eclipse.sme.frslas2m.ui.popupMenus.contribution.IFile"
+            nameFilter="*.frslas"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="org.eclipse.sme.frslas2uisl.module.menu"
+               label="Frslas2Uisl" path="frslas">
+            <groupMarker name="frslas"/> 
+         </menu>
+         <action
+               class="org.eclipse.atl.frsl2uisl.files.Main"
+               id="atlplugin.action"
+               label="Generate UISL model"
+               menubarPath="org.eclipse.sme.frslas2uisl.module.menu/group">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

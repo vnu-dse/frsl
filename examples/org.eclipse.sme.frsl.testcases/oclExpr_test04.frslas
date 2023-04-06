@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE frsl:FrslModel [
+<!ENTITY _0 "http://www.eclipse.org/emf/2002/Ecore.oclas">
+<!ENTITY _1 "http://www.eclipse.org/ocl/2015/Library.oclas">
+]>
+<frsl:FrslModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frsl="http://www.xtext.org/sme/FRSL"
+    xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot" xsi:schemaLocation="http://www.xtext.org/sme/FRSL java://org.eclipse.sme.frsl.FrslPackage http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.pivot.PivotPackage"
+    xmi:id="AAAAA" name="oclExpr_test04.frsl" externalURI="platform:/resource/org.eclipse.sme.frsl.testcases/oclExpr_test04.frsl"
+    xmiidVersion="1">
+  <ownedImports name="ecore" importedNamespace="pivot:Package &_0;#+bAnO" xmiidVersion="1"/>
+  <ownedPackages xmi:id="v8bR6" name="AssocClassTest">
+    <ownedClasses xmi:id="59S7I" name="A" superClasses="#tRH7L">
+      <ownedProperties xmi:id="O6q2G" name="a" type="pivot:PrimitiveType &_1;#tYtCd"/>
+      <ownedProperties xmi:id="NKBaM" name="attr1" type="#69S7I" opposite="#LaBaM"/>
+      <ownedProperties xmi:id="0THut" name="AA" type="#SiJ+Y" isImplicit="true" opposite="#xb3hM"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="69S7I" name="B" superClasses="#tRH7L">
+      <ownedProperties xmi:id="MKr2G" name="b" type="pivot:PrimitiveType &_1;#tYtCd"/>
+      <ownedProperties xmi:id="LaBaM" name="attr2" type="#59S7I" opposite="#NKBaM"/>
+      <ownedProperties xmi:id="qjHut" name="AA" type="#SiJ+Y" isImplicit="true" opposite="#wb3hM"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="tRH7L" name="_DomainClass" superClasses="&_1;#zfDWR">
+      <ownedProperties xmi:id="my2sP" name="isProblDom" type="pivot:PrimitiveType &_1;#XEMMs"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:AssociationClass" xmi:id=",DFKA" name="_Tracks" superClasses="&_1;#zfDWR">
+      <ownedProperties xmi:id="b9puR" name="problObj" type="#tRH7L"/>
+      <ownedProperties xmi:id="O2zOU" name="swObj" type="#tRH7L"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:AssociationClass" xmi:id="YdT7I" name="AA" superClasses="#tRH7L">
+      <ownedProperties xmi:id="wb3hM" name="attr1" type="#69S7I" opposite="#xb3hM"/>
+      <ownedProperties xmi:id="xb3hM" name="attr2" type="#59S7I"/>
+    </ownedClasses>
+  </ownedPackages>
+  <ownedPackages xmi:id="xajEA" name="usecase">
+    <ownedClasses xmi:id="8aLkc" name="UsecaseA" superClasses="&_1;#zfDWR">
+      <ownedOperations xmi:id="S29EE" name="enter_UsecaseA" type="pivot:PrimitiveType &_1;#XEMMs">
+        <ownedPreconditions xmi:id="7dXoN" name="enter_UsecaseA_post1">
+          <ownedSpecification xsi:type="pivot:ExpressionInOCL" type="pivot:PrimitiveType &_1;#XEMMs" body="objA.a > 100">
+            <ownedBody xsi:type="pivot:OperationCallExp" name=">" type="pivot:PrimitiveType &_1;#XEMMs" referredOperation="&_1;#5+qvY">
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="a" type="pivot:PrimitiveType &_1;#tYtCd" referredProperty="#O6q2G">
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="objA" type="#59S7I" referredProperty="#OaRQa">
+                  <ownedSource xsi:type="pivot:VariableExp" name="self" type="#8aLkc" isImplicit="true" referredVariable="#DRzjX"/>
+                </ownedSource>
+              </ownedSource>
+              <ownedArguments xsi:type="pivot:IntegerLiteralExp" type="pivot:PrimitiveType &_1;#tYtCd" integerSymbol="100"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="DRzjX" name="self" type="#8aLkc"/>
+          </ownedSpecification>
+        </ownedPreconditions>
+        <ownedPreconditions xmi:id="8dXoN" name="enter_UsecaseA_post2">
+          <ownedSpecification xsi:type="pivot:ExpressionInOCL" type="pivot:PrimitiveType &_1;#XEMMs" body="objB.attr2.a > 100">
+            <ownedBody xsi:type="pivot:OperationCallExp" name=">" type="pivot:PrimitiveType &_1;#XEMMs" referredOperation="&_1;#5+qvY">
+              <ownedSource xsi:type="pivot:PropertyCallExp" name="a" type="pivot:PrimitiveType &_1;#tYtCd" referredProperty="#O6q2G">
+                <ownedSource xsi:type="pivot:PropertyCallExp" name="attr2" type="#59S7I" referredProperty="#LaBaM">
+                  <ownedSource xsi:type="pivot:PropertyCallExp" name="objB" type="#69S7I" referredProperty="#PaRQa">
+                    <ownedSource xsi:type="pivot:VariableExp" name="self" type="#8aLkc" isImplicit="true" referredVariable="#MxxnX"/>
+                  </ownedSource>
+                </ownedSource>
+              </ownedSource>
+              <ownedArguments xsi:type="pivot:IntegerLiteralExp" type="pivot:PrimitiveType &_1;#tYtCd" integerSymbol="100"/>
+            </ownedBody>
+            <ownedContext xsi:type="pivot:ParameterVariable" xmi:id="MxxnX" name="self" type="#8aLkc"/>
+          </ownedSpecification>
+        </ownedPreconditions>
+      </ownedOperations>
+      <ownedOperations xmi:id="covg8" name="step1_actor" type="pivot:PrimitiveType &_1;#XEMMs"/>
+      <ownedProperties xmi:id="OaRQa" name="objA" type="#59S7I"/>
+      <ownedProperties xmi:id="PaRQa" name="objB" type="#69S7I"/>
+    </ownedClasses>
+  </ownedPackages>
+  <ownedPackages name="$$" URI="http://www.eclipse.org/ocl/2015/Orphanage" nsPrefix="orphanage">
+    <ownedClasses xsi:type="pivot:BagType" xmi:id="SiJ+Y" name="Bag" superClasses="#o9x,n">
+      <ownedBindings>
+        <ownedSubstitutions actual="#YdT7I" formal="&_1;#k2OA6"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="o9x,n" name="Collection" superClasses="&_1;#jbMkR">
+      <ownedBindings>
+        <ownedSubstitutions actual="#YdT7I" formal="&_1;#qs59R"/>
+      </ownedBindings>
+    </ownedClasses>
+  </ownedPackages>
+  <actor name="ActorA"/>
+  <usecase name="UsecaseA" primaryActor="#//@actor.0">
+    <precondition>
+      <snapshot constraint="#7dXoN #8dXoN">
+        <object name="objA" type="#OaRQa" isMatched="true"/>
+        <object name="objB" type="#PaRQa" isMatched="true"/>
+        <link objVar="#//@usecase.0/@precondition/@snapshot/@object.0 #//@usecase.0/@precondition/@snapshot/@object.1" assoc="#YdT7I"/>
+      </snapshot>
+    </precondition>
+    <firstStep xsi:type="frsl:ActStep" name="step01" isActorStep="true">
+      <preSnapshot/>
+      <postSnapshot/>
+    </firstStep>
+  </usecase>
+</frsl:FrslModel>

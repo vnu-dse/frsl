@@ -1,0 +1,18 @@
+package SetTypeTest{
+	class A{
+	}
+}
+
+actor ActorA
+end
+
+usecase UsecaseA
+	primaryActor = ActorA
+	ucPrecondition
+		objASet: Collection(A);
+		objA: A;
+	end
+	actStep step01 from
+	to
+	end
+end

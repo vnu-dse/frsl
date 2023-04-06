@@ -1,0 +1,23 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+package ProcessSaleDomain{
+	class Customer{
+	}
+}
+
+actor Customer
+end
+
+usecase ProcessSale
+	primaryActor = Customer
+	ucPrecondition
+		num: Integer;
+		numbers: Set(Integer);
+		customers: Set(Customer);
+	end
+	actStep step01 from
+		num: Integer;
+		numbers: Set(Integer);		
+		customers: Set(Customer);
+	to
+	end
+end

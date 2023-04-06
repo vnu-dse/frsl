@@ -1,0 +1,44 @@
+actor Customer
+end
+
+usecase ProcessSale
+	description = '...'		
+	primaryActor = Customer
+	actStep s1 from
+	to
+	end
+	sysStep s2 from
+	to
+	end
+	rejoinStep s1 when
+	end
+	actStep s4 from
+	to
+	end
+	altStep at s2 
+		when
+		end
+		actStep s2a_1 from
+		to
+		end
+	end
+	altStep at s4 
+		when
+		end
+		actStep s4b_1 from
+		to
+		end
+		sysStep s4b_2 from
+		to
+		end
+		rejoinStep s4b_1 when
+		end
+		altStep at s4b_1 
+			when
+			end
+			actStep s4b_1_1 from
+			to
+			end
+		end	
+	end
+end
