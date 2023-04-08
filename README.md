@@ -59,17 +59,6 @@
     - Right click on white space -> Filters -> Synchronized with model.
     - Ctrl+A -> Right click on white space -> Filters -> Show/Hide Contents.
 
-
-## Plugin Gen-AS2CS(GUI)
-
-...
-## Plugin Gen-TC
-
-...
-## Plugin Gen-AD-UCD
-
-...
-## Plugin Gen-UI
-
-...
-
+## Plugin [Gen-Testcase](assets/README_genTestcase.md)
+## Plugin [Gen-FrslGraph](assets/README_genFrslGraph.md)
+## Plugin [Gen-GUI](assets/README_genGUI.md)
